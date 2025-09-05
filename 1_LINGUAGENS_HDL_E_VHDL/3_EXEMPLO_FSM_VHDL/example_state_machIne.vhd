@@ -1,0 +1,84 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity example_state_machine is
+    Port (
+        clk     : in  STD_LOGIC;
+        reset   : in  STD_LOGIC;
+        input   : in  STD_LOGIC;
+        output  : out STD_LOGIC_VECTOR(2 downto 0) -- little-endian output
+    );
+end example_state_machine;
+
+architecture Behavioral of example_state_machine is
+   
+   
+    type state_type is (RESET, S0, S1, S2, S3);
+    signal next_state, state : state_type;
+
+begin
+
+
+process (reset, clk)
+begin
+    if reset ='1' then
+        state <= RESET;
+    elsif rising_edge(clk) then
+         state<=next_state;
+    end if;
+end process;
+
+process_control_unit:  process(input,state)
+    
+    begin
+      case state is
+        next_state<=state; -- default state
+         when RESET =>
+                next_state <= S0;  -- estado inicial
+         when S0 =>
+             if input = '1' then
+                 next_state <= S1;
+             else
+                 next_state <= S0;
+             end if;
+         when S1 =>
+             if input = '0' then
+                next_state <= S2;
+             else
+                next_state <= S1;
+             end if;
+         when S2 =>
+              if input = '1' then
+                next_state <= S3;
+              else
+                next_state <= S0;
+              end if;
+          when S3 =>
+                next_state <= S0;  -- final state
+            end case;
+        end if;
+    end process process_control_unit;
+
+
+
+process_output:  process(state)
+    
+    begin
+         case state is
+           when RESET =>
+                output <= (others=>'0') ;  -- initial state output
+           when S0 =>
+                output <= "001";
+           when S1 =>
+                output <= "010";
+           when S2 =>
+                output <= "011";
+           when S3 =>
+                output <= "100";
+            end case;
+        end if;
+end process process_output;
+
+
+
+end Behavioral;
