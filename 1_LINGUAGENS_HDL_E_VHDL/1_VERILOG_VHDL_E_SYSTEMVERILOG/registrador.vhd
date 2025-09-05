@@ -13,7 +13,7 @@ end register_top_level;
 
 architecture Behavioral of register_top_level is
 
-s_output: std_logic_vector(0 to 7);
+signal s_output: std_logic_vector(0 to 7);
 
 
 begin
@@ -25,6 +25,9 @@ processor_register:  process(clk, reset)
             s_output<= input; 
         end if;
     end process;
-end Behavioral;
 
 output <= s_output;
+
+
+end Behavioral;
+

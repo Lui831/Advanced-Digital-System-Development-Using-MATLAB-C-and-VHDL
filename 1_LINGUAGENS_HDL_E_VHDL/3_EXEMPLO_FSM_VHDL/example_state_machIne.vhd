@@ -75,7 +75,7 @@ process_output:  process(state)
                 output <= "011";
            when S3 =>
                 output <= "100";
-            end case;
+        end case;
         
 end process process_output;
 
