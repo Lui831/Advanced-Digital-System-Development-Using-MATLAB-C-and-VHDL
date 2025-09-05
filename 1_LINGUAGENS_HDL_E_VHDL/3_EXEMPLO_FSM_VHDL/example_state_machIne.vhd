@@ -24,7 +24,7 @@ begin
     if reset ='1' then
         state <= RESET;
     elsif rising_edge(clk) then
-         state<=next_state;
+        state<=next_state;
     end if;
 end process;
 
@@ -53,10 +53,10 @@ process_control_unit:  process(input,state)
               else
                 next_state <= S0;
               end if;
-          when S3 =>
+         when S3 =>
                 next_state <= S0;  -- final state
-            end case;
-        end if;
+         end case;
+    
     end process process_control_unit;
 
 
@@ -76,7 +76,7 @@ process_output:  process(state)
            when S3 =>
                 output <= "100";
             end case;
-        end if;
+        
 end process process_output;
 
 
