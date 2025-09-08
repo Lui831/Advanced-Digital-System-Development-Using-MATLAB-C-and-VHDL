@@ -6,7 +6,7 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 entity example_state_machine is
     Port (
         clk     : in  STD_LOGIC;
-        rst     : in  STD_LOGIC;
+        rst   : in  STD_LOGIC;
         input   : in  STD_LOGIC;
         output  : out STD_LOGIC_VECTOR(2 downto 0) -- little-endian output
     );
@@ -21,7 +21,7 @@ architecture Behavioral of example_state_machine is
 begin
 
 
-process (rst, clk)
+process (reset, clk)
 begin
     if rst = '1' then
         state <= RESET;
