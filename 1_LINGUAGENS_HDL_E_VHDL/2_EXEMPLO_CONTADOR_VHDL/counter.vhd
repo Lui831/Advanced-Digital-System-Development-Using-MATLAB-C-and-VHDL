@@ -16,7 +16,7 @@ end entity Counter;
 
 
 architecture Behavioral of Counter is
-    signal counter_reg : unsigned(3 downto 0) := (others => '0');   
+    signal counter_reg : integer 0 to 7 := (others => '0');   
 
 
 process_counter:  process(clk, reset)
@@ -25,9 +25,11 @@ process_counter:  process(clk, reset)
             counter_reg <= (others => '0');   
         elsif rising_edge(clk) then
             if enable = '1' then
-                counter_reg <= counter_reg + 1;   
+                counter_reg <= std_logic_vector(counter_reg + 1);   
             end if;
         end if;
     end process process_counter;    
 
   count <= std_logic_vector(counter_reg);     
+
+end architecture Behavioral;
