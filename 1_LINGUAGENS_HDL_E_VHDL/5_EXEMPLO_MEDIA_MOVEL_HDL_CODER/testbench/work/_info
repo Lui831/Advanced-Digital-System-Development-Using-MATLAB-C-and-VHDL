@@ -1,0 +1,186 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/3_EXEMPLO_FSM_VHDL/testbench
+Pmath_lib
+Z0 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z2 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z3 w1192372504
+Z4 dC:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/testbench
+Z5 8C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/math_lib.vhd
+Z6 FC:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/math_lib.vhd
+l0
+L57
+V2jmV@K`_IO0:@1S7Q98Mb3
+!s100 2mige`I6MYC>X2T257Laz0
+Z7 OV;C;10.5b;63
+32
+b1
+Z8 !s110 1757357677
+!i10b 1
+Z9 !s108 1757357677.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/math_lib.vhd|
+Z11 !s107 C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/math_lib.vhd|
+!i113 1
+Z12 o-work work -2002 -explicit
+Z13 tExplicit 1 CvgOpt 0
+Bbody
+Z14 DPx4 work 8 math_lib 0 22 2jmV@K`_IO0:@1S7Q98Mb3
+R0
+R1
+R2
+l0
+L69
+Vo3m44m?M2>aOdjD4n[Gka2
+!s100 TWd^^zD7mJUWY`RI6zRm]2
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Emoving_avarage
+Z15 w1757352042
+R0
+R1
+R2
+R4
+Z16 8C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage.vhd
+Z17 FC:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage.vhd
+l0
+L5
+Ve9N^eF`3JJLl_CCO_KK622
+!s100 `f5gZ<eBJz=R>b@NOO1h=1
+R7
+32
+Z18 !s110 1757362052
+!i10b 1
+Z19 !s108 1757362052.000000
+Z20 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage.vhd|
+Z21 !s107 C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage.vhd|
+!i113 1
+R12
+R13
+Abehavioral
+R0
+R1
+R2
+DEx4 work 14 moving_avarage 0 22 e9N^eF`3JJLl_CCO_KK622
+l20
+L14
+VEI4WI7ghf]`VZzdj;@F;41
+!s100 b6cD5GHMAV=A;ZGRG;ET53
+R7
+32
+R18
+!i10b 1
+R19
+R20
+R21
+!i113 1
+R12
+R13
+Emoving_avarage_tb
+Z22 w1757362050
+R14
+Z23 DPx4 work 7 rng_lib 0 22 dH^CIhd<KURJ5QP@b5X]n0
+Z24 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z25 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+R0
+R1
+R2
+R4
+8C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\1_LINGUAGENS_HDL_E_VHDL\5_EXEMPLO_MEDIA_MOVEL_HDL_CODER\moving_avarage _tb.vhd
+FC:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\1_LINGUAGENS_HDL_E_VHDL\5_EXEMPLO_MEDIA_MOVEL_HDL_CODER\moving_avarage _tb.vhd
+l0
+L8
+V9l_a?B>@kzlb4hH;z^gJg1
+!s100 oKB84Ei4`1<8J8fll1IeW0
+R7
+32
+R18
+!i10b 1
+R19
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\1_LINGUAGENS_HDL_E_VHDL\5_EXEMPLO_MEDIA_MOVEL_HDL_CODER\moving_avarage _tb.vhd|
+!s107 C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\1_LINGUAGENS_HDL_E_VHDL\5_EXEMPLO_MEDIA_MOVEL_HDL_CODER\moving_avarage _tb.vhd|
+!i113 1
+R12
+R13
+Abehavioral
+R24
+R25
+R0
+R1
+R2
+DEx4 work 17 moving_avarage_tb 0 22 SSeeBZkmm2@SFXP?b4OHF2
+l27
+L11
+Vf=^=fJnRSD9hCQ2GdYFg[0
+!s100 Xfg^>LWU;66O<zNmZlZ:<0
+R7
+32
+!s110 1757352045
+!i10b 1
+!s108 1757352045.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd|
+!s107 C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd|
+!i113 1
+R12
+R13
+FC:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd
+8C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd
+Prng_lib
+R14
+R0
+R1
+R2
+Z26 w1452794394
+R4
+Z27 8C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/rng_lib.vhd
+Z28 FC:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/rng_lib.vhd
+l0
+L69
+VdH^CIhd<KURJ5QP@b5X]n0
+!s100 56N;Z<`FfTK`>6WbHhzYz3
+R7
+32
+b1
+R8
+!i10b 1
+R9
+Z29 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/rng_lib.vhd|
+Z30 !s107 C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/rng_lib.vhd|
+!i113 1
+R12
+R13
+Bbody
+R23
+R14
+R0
+R1
+R2
+l0
+L99
+V:>?_U6LhFmmQa?o]K6j171
+!s100 ;ShDFdjXoaHahK@P0=HWK3
+R7
+32
+R8
+!i10b 1
+R9
+R29
+R30
+!i113 1
+R12
+R13
