@@ -33,16 +33,15 @@ process_rand :  process(s_rst, s_clk)
     	variable i : integer range 0 to 255 := 0;      
     begin  
      if s_rst ='1' then
-       -- r_uni:=0;
         r:=0.0;
         i:=0;
         s_inputA <= (others => '0');
+        r_uni := init_uniform(2, 5, 10, 0.0, 255.0);
      elsif rising_edge(s_clk) then  
-        r_uni := init_uniform(0, 0, 0, 0.0, 200.0);
         r := r_uni.rnd; -- r is a real
-        i := integer(r_uni.rnd); -- i is an integer 
-        r_uni := rand(r_uni);
-        s_inputA <= std_logic_vector(to_unsigned(r_uni.rand, s_inputA'length));
+        r_uni := rand(r_uni);       
+        i := integer(r_uni.rnd); -- i is an integer       
+        s_inputA <= std_logic_vector(to_unsigned(i, s_inputA'length));
      end if;
 end process process_rand;
 

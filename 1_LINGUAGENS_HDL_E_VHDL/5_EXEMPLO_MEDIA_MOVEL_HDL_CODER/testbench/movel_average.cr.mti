@@ -7,50 +7,7 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity moving_avarage
 -- Compiling architecture Behavioral of moving_avarage
 
-} {} {}} {{C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd}} {0 {vcom -work work -2002 -explicit {C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-Start time: 15:54:06 on Sep 08,2025
-vcom -reportprogress 300 -work work -2002 -explicit C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd 
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Loading package math_lib
--- Loading package rng_lib
--- Compiling entity moving_avarage_tb
--- Compiling architecture Behavioral of moving_avarage_tb
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(32): near "var": syntax error
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(36): (vcom-1136) Unknown identifier "rst".
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(36): Type error resolving infix expression "=" as type std.STANDARD.BOOLEAN.
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(37): (vcom-1136) Unknown identifier "r_uni".
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(37): Target type (error) in variable assignment is different from expression type Integer.
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(37): (vcom-1136) Unknown identifier "r_uni".
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(38): (vcom-1136) Unknown identifier "r".
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(38): Target type (error) in variable assignment is different from expression type Real.
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(38): (vcom-1136) Unknown identifier "r".
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(39): (vcom-1136) Unknown identifier "i".
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(39): Target type (error) in variable assignment is different from expression type Integer.
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(39): (vcom-1136) Unknown identifier "i".
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(42): (vcom-1136) Unknown identifier "r_uni".
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(42): Target type (error) in variable assignment is different from expression type work.rng_lib.rand_var.
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(42): (vcom-1136) Unknown identifier "r_uni".
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(43): (vcom-1136) Unknown identifier "r".
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(43): (vcom-1136) Unknown identifier "r_uni".
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(44): (vcom-1136) Unknown identifier "i".
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(44): Target type (error) in variable assignment is different from expression type std.STANDARD.INTEGER.
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(44): (vcom-1136) Unknown identifier "i".
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(44): (vcom-1136) Unknown identifier "r_uni".
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(45): (vcom-1136) Unknown identifier "r_uni".
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(45): (vcom-1136) Unknown identifier "r_uni".
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(46): (vcom-1136) Unknown identifier "r_uni".
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(46): ** Error: (vcom-1583) Illegal type converson from 'unknown' to 'ieee.std_logic_1164.STD_LOGIC_VECTOR' (operand type is not known).
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(80): VHDL Compiler exiting
-End time: 15:54:06 on Sep 08,2025, Elapsed time: 0:00:00
-Errors: 26, Warnings: 0
-
-} {15.0 41.0} {}} {C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd} {0 {vcom -work work -2002 -explicit -stats=none {C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd}
+} {} {}} {C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\1_LINGUAGENS_HDL_E_VHDL\5_EXEMPLO_MEDIA_MOVEL_HDL_CODER\moving_avarage _tb.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -62,8 +19,22 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Loading package rng_lib
 -- Compiling entity moving_avarage_tb
 -- Compiling architecture Behavioral of moving_avarage_tb
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(45): (vcom-1312) Unknown record element "rand" for selected name prefix "r_uni" of record type "work.rng_lib.rand_var".
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(45): ** Error: (vcom-1583) Illegal type converson from 'unknown' to 'ieee.std_logic_1164.STD_LOGIC_VECTOR' (operand type is not known).
-** Error: C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd(79): VHDL Compiler exiting
 
-} {13.0 16.0} {}}
+} {} {}} {{C:/curso_HDL_Vanderlei/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/5_EXEMPLO_MEDIA_MOVEL_HDL_CODER/moving_avarage _tb.vhd}} {1 {vcom -work work -2002 -explicit {C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\1_LINGUAGENS_HDL_E_VHDL\5_EXEMPLO_MEDIA_MOVEL_HDL_CODER\moving_avarage _tb.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+Start time: 17:00:51 on Sep 09,2025
+vcom -reportprogress 300 -work work -2002 -explicit C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\1_LINGUAGENS_HDL_E_VHDL\5_EXEMPLO_MEDIA_MOVEL_HDL_CODER\moving_avarage _tb.vhd 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package math_lib
+-- Loading package rng_lib
+-- Compiling entity moving_avarage_tb
+-- Compiling architecture Behavioral of moving_avarage_tb
+End time: 17:00:51 on Sep 09,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+
+} {} {}}
