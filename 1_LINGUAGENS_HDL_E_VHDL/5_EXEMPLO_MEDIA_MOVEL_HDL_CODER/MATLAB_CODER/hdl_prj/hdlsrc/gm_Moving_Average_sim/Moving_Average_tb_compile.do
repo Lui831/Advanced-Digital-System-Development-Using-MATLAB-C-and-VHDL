@@ -1,0 +1,16 @@
+vlib work
+vmap -c
+vcom  Moving_Average_pkg.vhd
+vcom  nfp_gain_pow2_double.vhd
+vcom  Gain1.vhd
+vcom  Gain2.vhd
+vcom  nfp_uminus_double.vhd
+vcom  Gain_unaryminus.vhd
+vcom  Rate_Transition.vhd
+vcom  nfp_add_double.vhd
+vcom  Sum.vhd
+vcom  Sum1.vhd
+vcom  Sum2.vhd
+vcom  Moving_Average.vhd
+vcom  Moving_Average_tb_pkg.vhd
+vcom  Moving_Average_tb.vhd

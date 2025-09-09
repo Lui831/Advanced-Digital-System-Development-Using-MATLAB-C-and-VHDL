@@ -1,0 +1,1 @@
+var modelInfo = {model:"Moving Average"};var modelHierarchy=[{model:"Moving Average",relativePath:"_internal.html",parent:"null"},];var AddCode = true;
