@@ -40,7 +40,7 @@ begin
             sum <= ("00" & m_bufferA(0)) + ("00" & m_bufferA(1)) + ("00" & m_bufferA(2)) + ("00" & m_bufferA(3));
 
             -- avarage calculation
-            avarage <= std_logic_vector(sum(9 downto 2));   -- sum >> 4
+            avarage <= std_logic_vector(sum(9 downto 2));   -- sum >> 2, divide by 4
         end if;
     end process;
 
