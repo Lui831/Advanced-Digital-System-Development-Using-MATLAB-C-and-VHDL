@@ -1,6 +1,6 @@
 # -------------------------------------------------------------------------- #
 #
-# Copyright (C) 2024  Intel Corporation. All rights reserved.
+# Copyright (C) 2020  Intel Corporation. All rights reserved.
 # Your use of Intel Corporation's design tools, logic functions 
 # and other software and tools, and any partner logic 
 # functions, and any output files from any of the foregoing 
@@ -18,8 +18,8 @@
 # -------------------------------------------------------------------------- #
 #
 # Quartus Prime
-# Version 23.1std.1 Build 993 05/14/2024 SC Standard Edition
-# Date created = 18:53:51  September 14, 2025
+# Version 20.1.0 Build 711 06/05/2020 SJ Standard Edition
+# Date created = 17:09:18  September 15, 2025
 #
 # -------------------------------------------------------------------------- #
 #
@@ -30,7 +30,7 @@
 #    If this file doesn't exist, see file:
 #		assignment_defaults.qdf
 #
-# 2) Intel recommends that you do not modify this file. This
+# 2) Altera recommends that you do not modify this file. This
 #    file is updated automatically by the Quartus Prime software
 #    and any changes you make may be lost or overwritten.
 #
@@ -39,7 +39,10 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSXFC6D6F31C8
-set_global_assignment -name TOP_LEVEL_ENTITY system
-set_global_assignment -name ORIGINAL_QUARTUS_VERSION 23.1STD.1
-set_global_assignment -name PROJECT_CREATION_TIME_DATE "18:53:51  SEPTEMBER 14, 2025"
-set_global_assignment -name LAST_QUARTUS_VERSION "23.1std.1 Standard Edition"
+set_global_assignment -name TOP_LEVEL_ENTITY system_soc
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:09:18  SEPTEMBER 15, 2025"
+set_global_assignment -name LAST_QUARTUS_VERSION "20.1.0 Standard Edition"
+set_global_assignment -name QIP_FILE ./qsys_prj/system_soc/synthesis/system_soc.qip
+set_global_assignment -name SDC_FILE constraints.sdc
+set_global_assignment -name TIMING_ANALYZER_REPORT_SCRIPT quartus_timing_query.tcl

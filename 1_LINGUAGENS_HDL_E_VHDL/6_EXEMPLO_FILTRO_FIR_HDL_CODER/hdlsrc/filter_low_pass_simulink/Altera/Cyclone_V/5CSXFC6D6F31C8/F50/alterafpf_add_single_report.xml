@@ -1,15 +1,15 @@
 <parameterization name="alterafpf_add_single">
 
-	<frequency>50</frequency>
+	<frequency>50<freqeuncy>
 
-	<latency>2</latency>
+	<latency>unknown</latency>
 
-	<luts>776</luts>
+	<luts>unknown<luts>
 
-	<mbits>0</mbits>
+	<mbits>unknown</mbits>
 
-	<mblocks>0</mblocks>
+	<mblocks>unknown</mblocks>
 
-	<multiplies>0</multiplies>
+	<multiplies>unknown</multiplies>
 
 </parameterization>

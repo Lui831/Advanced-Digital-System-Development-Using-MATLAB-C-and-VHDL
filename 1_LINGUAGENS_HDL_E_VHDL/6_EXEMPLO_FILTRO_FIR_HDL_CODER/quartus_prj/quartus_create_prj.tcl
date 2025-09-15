@@ -15,5 +15,6 @@ if {[catch {execute_flow -check_ios} result]} {
 set_global_assignment -name TOP_LEVEL_ENTITY system_soc
 set_global_assignment -name QIP_FILE ./qsys_prj/system_soc/synthesis/system_soc.qip
 set_global_assignment -name SDC_FILE constraints.sdc
+source PinConstraints.tcl
 set_global_assignment -name TIMEQUEST_REPORT_SCRIPT quartus_timing_query.tcl
 project_close
