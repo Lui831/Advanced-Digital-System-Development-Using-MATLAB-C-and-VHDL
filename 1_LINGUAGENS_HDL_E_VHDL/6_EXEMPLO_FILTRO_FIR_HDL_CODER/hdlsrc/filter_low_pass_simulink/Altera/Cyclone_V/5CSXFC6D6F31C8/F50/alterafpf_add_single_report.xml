@@ -1,0 +1,15 @@
+<parameterization name="alterafpf_add_single">
+
+	<frequency>50</frequency>
+
+	<latency>2</latency>
+
+	<luts>776</luts>
+
+	<mbits>0</mbits>
+
+	<mblocks>0</mblocks>
+
+	<multiplies>0</multiplies>
+
+</parameterization>
