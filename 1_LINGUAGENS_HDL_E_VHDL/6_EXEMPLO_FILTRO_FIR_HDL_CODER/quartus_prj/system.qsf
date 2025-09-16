@@ -19,7 +19,7 @@
 #
 # Quartus Prime
 # Version 20.1.0 Build 711 06/05/2020 SJ Standard Edition
-# Date created = 17:09:18  September 15, 2025
+# Date created = 15:13:33  September 16, 2025
 #
 # -------------------------------------------------------------------------- #
 #
@@ -41,8 +41,11 @@ set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSXFC6D6F31C8
 set_global_assignment -name TOP_LEVEL_ENTITY system_soc
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.0
-set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:09:18  SEPTEMBER 15, 2025"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:13:33  SEPTEMBER 16, 2025"
 set_global_assignment -name LAST_QUARTUS_VERSION "20.1.0 Standard Edition"
+set_global_assignment -name SEARCH_PATH ./qsys_prj/system_soc/synthesis
+set_global_assignment -name SEARCH_PATH ./qsys_prj/system_soc/synthesis/submodules
+set_global_assignment -name SEARCH_PATH ./qsys_prj/system_soc/synthesis/submodules/sequencer
 set_global_assignment -name QIP_FILE ./qsys_prj/system_soc/synthesis/system_soc.qip
 set_global_assignment -name SDC_FILE constraints.sdc
 set_global_assignment -name TIMING_ANALYZER_REPORT_SCRIPT quartus_timing_query.tcl

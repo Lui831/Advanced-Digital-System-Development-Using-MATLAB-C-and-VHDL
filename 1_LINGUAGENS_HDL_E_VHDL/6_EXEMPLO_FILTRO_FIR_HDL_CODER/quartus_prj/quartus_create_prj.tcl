@@ -13,8 +13,10 @@ if {[catch {execute_flow -check_ios} result]} {
 	puts "\nINFO: Quartus license check was successful.\n"
 }
 set_global_assignment -name TOP_LEVEL_ENTITY system_soc
+set_global_assignment -name SEARCH_PATH ./qsys_prj/system_soc/synthesis
+set_global_assignment -name SEARCH_PATH ./qsys_prj/system_soc/synthesis/submodules
+set_global_assignment -name SEARCH_PATH ./qsys_prj/system_soc/synthesis/submodules/sequencer
 set_global_assignment -name QIP_FILE ./qsys_prj/system_soc/synthesis/system_soc.qip
 set_global_assignment -name SDC_FILE constraints.sdc
-source PinConstraints.tcl
 set_global_assignment -name TIMEQUEST_REPORT_SCRIPT quartus_timing_query.tcl
 project_close
