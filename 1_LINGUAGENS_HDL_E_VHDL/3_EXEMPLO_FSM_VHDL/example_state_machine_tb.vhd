@@ -60,7 +60,7 @@ begin
 inst_example_state_machine : component example_state_machine
   port map (
          clk    => s_clk,
-         rst => s_rst,
+         rst    => s_rst,
          input  => s_input,
          output => s_count
      ); 
