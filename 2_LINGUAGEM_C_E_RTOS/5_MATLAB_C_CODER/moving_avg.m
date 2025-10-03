@@ -3,7 +3,7 @@ function [data_out] = moving_avg(num_terms, matrix_in)
 coder.cinclude('<stdio.h>');
 num_terms_inside = num_terms;
 
-f_in = zeros(1000,3,'double');
+%f_in = zeros(1000,3,'double');
 f_in = matrix_in;
 
 
