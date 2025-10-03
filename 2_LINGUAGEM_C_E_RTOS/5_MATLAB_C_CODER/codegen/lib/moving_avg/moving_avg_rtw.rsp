@@ -1,0 +1,5 @@
+﻿moving_avg_initialize.obj
+moving_avg_terminate.obj
+moving_avg.obj
+moving_avg_emxutil.obj
+moving_avg_emxAPI.obj
