@@ -30,15 +30,45 @@
                   </Inputs>
                   <NumOutputs>1</NumOutputs>
                 </Signatures>
+                <Signatures id="6" type="coderapp.internal.interface.project.FunctionSignature">
+                  <Inputs id="7" type="coderapp.internal.interface.project.Input">
+                    <Name>num_terms</Name>
+                  </Inputs>
+                  <Inputs id="8" type="coderapp.internal.interface.project.Input">
+                    <Name>matrix_in</Name>
+                  </Inputs>
+                  <NumOutputs>1</NumOutputs>
+                </Signatures>
                 <File type="coderapp.internal.util.mfz.FileSpec">
                   <Path>moving_avg.m</Path>
                 </File>
                 <Name>moving_avg</Name>
               </EntryPoints>
-              <SizeConstraints id="6" type="coderapp.internal.interface.project.SizeConstraints">
+              <Globals id="9" type="coderapp.internal.interface.project.Global">
+                <Name>g1</Name>
+                <Type id="10" type="coderapp.internal.codertype.PrimitiveType"/>
+              </Globals>
+              <Globals id="11" type="coderapp.internal.interface.project.Global">
+                <Name>g2</Name>
+                <Type id="12" type="coderapp.internal.codertype.PrimitiveType"/>
+              </Globals>
+              <SizeConstraints id="13" type="coderapp.internal.interface.project.SizeConstraints">
                 <Value type="coderapp.internal.interface.project.SizeConstraintsValue"/>
               </SizeConstraints>
-              <Types id="7" type="coderapp.internal.codertype.TypeStore"/>
+              <Types id="14" type="coderapp.internal.codertype.TypeStore">
+                <Types id="10" type="coderapp.internal.codertype.PrimitiveType">
+                  <ClassName>uint32</ClassName>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
+                </Types>
+                <Types id="12" type="coderapp.internal.codertype.PrimitiveType">
+                  <ClassName>double</ClassName>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
+                  <Size type="coderapp.internal.codertype.Dimension">
+                    <Sizedness>UNBOUNDED</Sizedness>
+                  </Size>
+                </Types>
+              </Types>
             </coderapp.internal.interface.project.Interface>
           </MF0>
         </part>
@@ -64,7 +94,11 @@
       </parts>
     </layer>
     <layer id="gpuCoder" version="R2025a">
-      <parts/>
+      <parts>
+        <part role="gpuCoder"><![CDATA[
+          
+        ]]></part>
+      </parts>
     </layer>
   </layers>
 </coderProject>
