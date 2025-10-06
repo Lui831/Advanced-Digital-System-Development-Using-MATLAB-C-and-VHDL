@@ -1,0 +1,7 @@
+﻿-IC:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\4_EXEMPLO_CONTROLADOR_DIGITAL_PID
+-IC:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\4_EXEMPLO_CONTROLADOR_DIGITAL_PID\PID_simulink_example_ert_rtw
+-I"C:\Program Files\MATLAB\R2025b\extern\include"
+-I"C:\Program Files\MATLAB\R2025b\simulink\include"
+-I"C:\Program Files\MATLAB\R2025b\rtw\c\src"
+-I"C:\Program Files\MATLAB\R2025b\rtw\c\src\ext_mode\common"
+-I"C:\Program Files\MATLAB\R2025b\rtw\c\ert"
