@@ -41,19 +41,29 @@
                 <Value type="coderapp.internal.interface.project.SizeConstraintsValue"/>
               </SizeConstraints>
               <Types id="9" type="coderapp.internal.codertype.TypeStore">
-                <Types id="5" type="coderapp.internal.codertype.PrimitiveType">
+                <Types id="7" type="coderapp.internal.codertype.PrimitiveType">
                   <ClassName>double</ClassName>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
+                  <Size type="coderapp.internal.codertype.Dimension">
+                    <Sizedness>UNBOUNDED</Sizedness>
+                  </Size>
+                </Types>
+                <Types id="5" type="coderapp.internal.codertype.PrimitiveType">
+                  <ClassName>uint16</ClassName>
                   <Size type="coderapp.internal.codertype.Dimension"/>
                   <Size type="coderapp.internal.codertype.Dimension"/>
                 </Types>
-                <Types id="7" type="coderapp.internal.codertype.PrimitiveType">
+                <Types id="10" type="coderapp.internal.codertype.PrimitiveType">
                   <ClassName>double</ClassName>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
                   <Size type="coderapp.internal.codertype.Dimension">
-                    <Length>1000</Length>
+                    <Sizedness>UNBOUNDED</Sizedness>
                   </Size>
-                  <Size type="coderapp.internal.codertype.Dimension">
-                    <Length>3</Length>
-                  </Size>
+                </Types>
+                <Types id="11" type="coderapp.internal.codertype.PrimitiveType">
+                  <ClassName>uint16</ClassName>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
                 </Types>
               </Types>
             </coderapp.internal.interface.project.Interface>
@@ -66,117 +76,164 @@
         <part role="matlabCoder">
           <MF0 packageUris="http://schema.mathworks.com/mf0/coderapp_config_datamodel/R2021a.001 http://schema.mathworks.com/mf0/coderapp_core_proj_dm/R2025a http://schema.mathworks.com/mf0/coderapp_core_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_form_datamodel/R2020a http://schema.mathworks.com/mf0/coderapp_gpucoder_proj_dm/R2025a http://schema.mathworks.com/mf0/coderapp_gpucoder_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_matlabcoder_proj_dm/R2025a http://schema.mathworks.com/mf0/coderapp_matlabcoder_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_types_project_datamodel/R2025a http://schema.mathworks.com/mf0/coderapp_types_runtime_datamodel/R2022b http://schema.mathworks.com/mf0/coderapp_utils_datamodel/R2020a" version="1.1">
             <coderapp.internal.mlc.mfz.MatlabCoderProjectState id="1" type="coderapp.internal.mlc.mfz.MatlabCoderProjectState">
-              <VerificationTarget>ORIGINAL</VerificationTarget>
-              <Activity id="2" type="coderapp.internal.mlc.mfz.MainBuildActivity">
-                <Compile>NOT_PLANNED</Compile>
+              <Activity id="2" type="coderapp.internal.mlc.mfz.CheckActivity">
+                <Test>FAIL</Test>
+                <Compile>SUCCESS</Compile>
                 <Generate>SUCCESS</Generate>
-                <TargetHardware>MATLAB Host Computer</TargetHardware>
-                <TargetLanguage>C</TargetLanguage>
-                <WorkflowTarget>LIB</WorkflowTarget>
                 <Result id="3" type="coderapp.internal.mlc.mfz.MatlabCoderCodegenResult"/>
               </Activity>
-              <MainBuildResult id="3" type="coderapp.internal.mlc.mfz.MatlabCoderCodegenResult">
+              <CheckIssuesBuildResult id="3" type="coderapp.internal.mlc.mfz.MatlabCoderCodegenResult">
+                <LogDirectory>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\mex\moving_avg</LogDirectory>
+                <MainReport id="4" type="coderapp.internal.build.mfz.CodegenArtifact"/>
+                <OutputFile>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\moving_avg_mex.mexw64</OutputFile>
+                <Artifacts id="4" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <SubType>CODEGEN_REPORT</SubType>
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\mex\moving_avg\html\report.mldatx</Path>
+                  </File>
+                  <Type>CODEGEN_REPORT</Type>
+                </Artifacts>
+                <Artifacts id="5" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <SubType>MEX</SubType>
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\moving_avg_mex.mexw64</Path>
+                  </File>
+                  <Type>BINARY</Type>
+                </Artifacts>
+                <BuildFolder type="coderapp.internal.util.mfz.FileSpec"/>
+                <Success>true</Success>
+                <Timestamp>2025-10-06T08:13:46</Timestamp>
+                <TestResult id="6" type="coderapp.internal.core.mfz.ActivityResult">
+                  <Messages type="coderapp.internal.util.mfz.Message">
+                    <Identifier>Coder:FE:TestBenchFcnCallArgCount</Identifier>
+                    <Text>Function 'moving_avg' called with wrong number of arguments: expected 2, received 0.</Text>
+                    <Type>ERROR</Type>
+                  </Messages>
+                  <Timestamp>2025-10-06T08:13:47</Timestamp>
+                </TestResult>
+              </CheckIssuesBuildResult>
+              <MainBuildResult id="7" type="coderapp.internal.mlc.mfz.MatlabCoderCodegenResult">
                 <WorkflowTarget>LIB</WorkflowTarget>
                 <LogDirectory>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg</LogDirectory>
-                <MainReport id="4" type="coderapp.internal.build.mfz.CodegenArtifact"/>
-                <Artifacts id="4" type="coderapp.internal.build.mfz.CodegenArtifact">
+                <MainReport id="8" type="coderapp.internal.build.mfz.CodegenArtifact"/>
+                <OutputFile>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg.lib</OutputFile>
+                <Artifacts id="8" type="coderapp.internal.build.mfz.CodegenArtifact">
                   <SubType>CODEGEN_REPORT</SubType>
                   <File type="coderapp.internal.util.mfz.FileSpec">
                     <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\html\report.mldatx</Path>
                   </File>
                   <Type>CODEGEN_REPORT</Type>
                 </Artifacts>
-                <Artifacts id="5" type="coderapp.internal.build.mfz.CodegenArtifact">
+                <Artifacts id="9" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <SubType>LIBRARY</SubType>
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg.lib</Path>
+                  </File>
+                  <Type>BINARY</Type>
+                </Artifacts>
+                <Artifacts id="10" type="coderapp.internal.build.mfz.CodegenArtifact">
                   <File type="coderapp.internal.util.mfz.FileSpec">
                     <Path>C:\Program Files\MATLAB\R2025b\extern\include\tmwtypes.h</Path>
                   </File>
                   <Type>GENERATED_SOURCE</Type>
                 </Artifacts>
-                <Artifacts id="6" type="coderapp.internal.build.mfz.CodegenArtifact">
-                  <File type="coderapp.internal.util.mfz.FileSpec">
-                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg.c</Path>
-                  </File>
-                  <Type>GENERATED_SOURCE</Type>
-                </Artifacts>
-                <Artifacts id="7" type="coderapp.internal.build.mfz.CodegenArtifact">
-                  <File type="coderapp.internal.util.mfz.FileSpec">
-                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg.h</Path>
-                  </File>
-                  <Type>GENERATED_SOURCE</Type>
-                </Artifacts>
-                <Artifacts id="8" type="coderapp.internal.build.mfz.CodegenArtifact">
-                  <File type="coderapp.internal.util.mfz.FileSpec">
-                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_data.h</Path>
-                  </File>
-                  <Type>GENERATED_SOURCE</Type>
-                </Artifacts>
-                <Artifacts id="9" type="coderapp.internal.build.mfz.CodegenArtifact">
-                  <File type="coderapp.internal.util.mfz.FileSpec">
-                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_emxAPI.c</Path>
-                  </File>
-                  <Type>GENERATED_SOURCE</Type>
-                </Artifacts>
-                <Artifacts id="10" type="coderapp.internal.build.mfz.CodegenArtifact">
-                  <File type="coderapp.internal.util.mfz.FileSpec">
-                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_emxAPI.h</Path>
-                  </File>
-                  <Type>GENERATED_SOURCE</Type>
-                </Artifacts>
                 <Artifacts id="11" type="coderapp.internal.build.mfz.CodegenArtifact">
                   <File type="coderapp.internal.util.mfz.FileSpec">
-                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_emxutil.c</Path>
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\conv.c</Path>
                   </File>
                   <Type>GENERATED_SOURCE</Type>
                 </Artifacts>
                 <Artifacts id="12" type="coderapp.internal.build.mfz.CodegenArtifact">
                   <File type="coderapp.internal.util.mfz.FileSpec">
-                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_emxutil.h</Path>
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\conv.h</Path>
                   </File>
                   <Type>GENERATED_SOURCE</Type>
                 </Artifacts>
                 <Artifacts id="13" type="coderapp.internal.build.mfz.CodegenArtifact">
                   <File type="coderapp.internal.util.mfz.FileSpec">
-                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_initialize.c</Path>
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg.c</Path>
                   </File>
                   <Type>GENERATED_SOURCE</Type>
                 </Artifacts>
                 <Artifacts id="14" type="coderapp.internal.build.mfz.CodegenArtifact">
                   <File type="coderapp.internal.util.mfz.FileSpec">
-                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_initialize.h</Path>
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg.h</Path>
                   </File>
                   <Type>GENERATED_SOURCE</Type>
                 </Artifacts>
                 <Artifacts id="15" type="coderapp.internal.build.mfz.CodegenArtifact">
                   <File type="coderapp.internal.util.mfz.FileSpec">
-                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_terminate.c</Path>
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_data.h</Path>
                   </File>
                   <Type>GENERATED_SOURCE</Type>
                 </Artifacts>
                 <Artifacts id="16" type="coderapp.internal.build.mfz.CodegenArtifact">
                   <File type="coderapp.internal.util.mfz.FileSpec">
-                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_terminate.h</Path>
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_emxAPI.c</Path>
                   </File>
                   <Type>GENERATED_SOURCE</Type>
                 </Artifacts>
                 <Artifacts id="17" type="coderapp.internal.build.mfz.CodegenArtifact">
                   <File type="coderapp.internal.util.mfz.FileSpec">
-                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_types.h</Path>
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_emxAPI.h</Path>
                   </File>
                   <Type>GENERATED_SOURCE</Type>
                 </Artifacts>
                 <Artifacts id="18" type="coderapp.internal.build.mfz.CodegenArtifact">
                   <File type="coderapp.internal.util.mfz.FileSpec">
-                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\rtwtypes.h</Path>
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_emxutil.c</Path>
                   </File>
                   <Type>GENERATED_SOURCE</Type>
                 </Artifacts>
                 <Artifacts id="19" type="coderapp.internal.build.mfz.CodegenArtifact">
                   <File type="coderapp.internal.util.mfz.FileSpec">
-                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\examples\main.c</Path>
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_emxutil.h</Path>
                   </File>
                   <Type>GENERATED_SOURCE</Type>
                 </Artifacts>
                 <Artifacts id="20" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_initialize.c</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="21" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_initialize.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="22" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_terminate.c</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="23" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_terminate.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="24" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\moving_avg_types.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="25" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\rtwtypes.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="26" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\examples\main.c</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="27" type="coderapp.internal.build.mfz.CodegenArtifact">
                   <File type="coderapp.internal.util.mfz.FileSpec">
                     <Path>C:\curso_HDL_Vanderlei\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\2_LINGUAGEM_C_E_RTOS\5_MATLAB_C_CODER\codegen\lib\moving_avg\examples\main.h</Path>
                   </File>
@@ -184,14 +241,21 @@
                 </Artifacts>
                 <BuildFolder type="coderapp.internal.util.mfz.FileSpec"/>
                 <Success>true</Success>
-                <Timestamp>2025-10-03T15:00:14</Timestamp>
+                <Timestamp>2025-10-06T08:12:13</Timestamp>
               </MainBuildResult>
             </coderapp.internal.mlc.mfz.MatlabCoderProjectState>
           </MF0>
         </part>
         <part role="standaloneConfig">
           <MF0 packageUris="http://schema.mathworks.com/mf0/coderapp_config_datamodel/R2021a.001" version="1.1">
-            <coderapp.internal.ext.ConfigStore id="1" type="coderapp.internal.ext.ConfigStore"/>
+            <coderapp.internal.ext.ConfigStore id="1" type="coderapp.internal.ext.ConfigStore">
+              <Values id="2" type="coderapp.internal.ext.ConfigEntry">
+                <Key>genCodeOnly</Key>
+                <Data id="3" type="coderapp.internal.config.data.BooleanParamData">
+                  <Help type="coderapp.internal.util.DocRef"/>
+                </Data>
+              </Values>
+            </coderapp.internal.ext.ConfigStore>
           </MF0>
         </part>
         <part role="mexConfig">
