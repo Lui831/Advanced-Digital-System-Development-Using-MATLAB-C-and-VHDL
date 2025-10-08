@@ -2,7 +2,7 @@
 ## Makefile generated for component 'PID_simulink_example'. 
 ## 
 ## Makefile     : PID_simulink_example.mk
-## Generated on : Mon Oct 06 16:17:45 2025
+## Generated on : Mon Oct 06 16:55:19 2025
 ## Final product: $(RELATIVE_PATH_TO_ANCHOR)\PID_simulink_example.exe
 ## Product type : executable
 ## 
@@ -27,7 +27,7 @@ START_DIR                 = C:\curso_HDL_Vanderlei\Advanced-Digital-System-Devel
 SOLVER                    = 
 SOLVER_OBJ                = 
 CLASSIC_INTERFACE         = 0
-TGT_FCN_LIB               = ISO_C
+TGT_FCN_LIB               = ISO_C++11
 MODEL_HAS_DYNAMICALLY_LOADED_SFCNS = 0
 RELATIVE_PATH_TO_ANCHOR   = ..
 COMPILER_COMMAND_FILE     = PID_simulink_example_comp.rsp
@@ -174,7 +174,7 @@ INCLUDES = $(INCLUDES_BUILDINFO)
 ## DEFINES
 ###########################################################################
 
-DEFINES_BUILD_ARGS = -DCLASSIC_INTERFACE=0 -DALLOCATIONFCN=0 -DTERMFCN=0 -DONESTEPFCN=1 -DMAT_FILE=0 -DMULTI_INSTANCE_CODE=0 -DINTEGER_CODE=0 -DMT=0
+DEFINES_BUILD_ARGS = -DCLASSIC_INTERFACE=0 -DALLOCATIONFCN=0 -DTERMFCN=0 -DONESTEPFCN=1 -DMAT_FILE=0 -DMULTI_INSTANCE_CODE=1 -DINTEGER_CODE=0 -DMT=0
 DEFINES_CUSTOM = 
 DEFINES_OPTS = -DTID01EQ=0
 DEFINES_STANDARD = -DMODEL=PID_simulink_example -DNUMST=1 -DNCSTATES=0 -DHAVESTDIO -DMODEL_HAS_DYNAMICALLY_LOADED_SFCNS=0
@@ -185,9 +185,9 @@ DEFINES = $(DEFINES_BUILD_ARGS) $(DEFINES_CUSTOM) $(DEFINES_OPTS) $(DEFINES_STAN
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(START_DIR)\PID_simulink_example_ert_rtw\PID_simulink_example.c
+SRCS = $(START_DIR)\PID_simulink_example_ert_rtw\PID_simulink_example.cpp
 
-MAIN_SRC = $(START_DIR)\PID_simulink_example_ert_rtw\ert_main.c
+MAIN_SRC = $(START_DIR)\PID_simulink_example_ert_rtw\ert_main.cpp
 
 ALL_SRCS = $(SRCS) $(MAIN_SRC)
 
@@ -292,7 +292,7 @@ set_environment_variables :
 
 $(PRODUCT) : $(OBJS) $(PREBUILT_OBJS) $(MAIN_OBJ)
 	@cmd /C "@echo ### Creating standalone executable "$(PRODUCT)" ..."
-	$(LD) $(LDFLAGS) -out:$(PRODUCT) @$(CMD_FILE) $(SYSTEM_LIBS) $(TOOLCHAIN_LIBS)
+	$(CPP_LD) $(CPP_LDFLAGS) -out:$(PRODUCT) @$(CMD_FILE) $(SYSTEM_LIBS) $(TOOLCHAIN_LIBS)
 	@cmd /C "@echo ### Created: $(PRODUCT)"
 
 
@@ -416,12 +416,12 @@ $(PRODUCT) : $(OBJS) $(PREBUILT_OBJS) $(MAIN_OBJ)
 	$(CPP) $(CPPFLAGS) -Fo"$@" "$<"
 
 
-PID_simulink_example.obj : "$(START_DIR)\PID_simulink_example_ert_rtw\PID_simulink_example.c"
-	$(CC) $(CFLAGS) -Fo"$@" "$(START_DIR)\PID_simulink_example_ert_rtw\PID_simulink_example.c"
+PID_simulink_example.obj : "$(START_DIR)\PID_simulink_example_ert_rtw\PID_simulink_example.cpp"
+	$(CPP) $(CPPFLAGS) -Fo"$@" "$(START_DIR)\PID_simulink_example_ert_rtw\PID_simulink_example.cpp"
 
 
-ert_main.obj : "$(START_DIR)\PID_simulink_example_ert_rtw\ert_main.c"
-	$(CC) $(CFLAGS) -Fo"$@" "$(START_DIR)\PID_simulink_example_ert_rtw\ert_main.c"
+ert_main.obj : "$(START_DIR)\PID_simulink_example_ert_rtw\ert_main.cpp"
+	$(CPP) $(CPPFLAGS) -Fo"$@" "$(START_DIR)\PID_simulink_example_ert_rtw\ert_main.cpp"
 
 
 ###########################################################################
