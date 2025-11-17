@@ -1,0 +1,5 @@
+
+Warnings: 
+
+File: C:\ex_PINN_Matlab\call_custom_fcn.m, line : 2, column : 21. Could not generate math replacement function for 'custom_fcn'. Approximation supports only scalar inputs, non-scalar inputs(10x21) found for 'x'.
+File: C:\ex_PINN_Matlab\call_custom_fcn.m, line : 2, column : 21. Could not generate math replacement function for 'custom_fcn'. Approximation supports only scalar inputs, non-scalar inputs(10x1) found for 'x'.

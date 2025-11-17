@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Fixed-Point Report for prediction_v2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+	body { font-family: monospace; }
+	h2 { font-family: Arial, Helvetica, sans-serif; color: #990000; margin-top: 50px; }
+	table,th,td { border: 1px solid black; }
+	table { margin-top: 30px; }
+	th { align: center; font-weight: bold; }
+	tr.h { background-color: #99CCFF; }
+	tr.a { background-color: #EEEEFF; }
+	tr.b { background-color: #FFFFFF; }
+	tr.c { background-color: #FFA500; }
+	tr.a td, tr.b td { border-style: none; }
+	td.left { text-align: left; }
+	td.right { text-align: right; }
+	td.center { text-align: center; }
+	td.bold { font-weight: bold; }
+	pre { padding: 0px; margin: 0px; }
+	span { font-style: italic; }
+	.code, .code tr, .code th, .code td { border: none; border-collapse: collapse; }
+	.padd { padding-left: 5px; }
+	td.cov, th.cov { width: 50px; height: 20px; text-align: center; font-weight: bold; border-right: 2px solid black; cell-spacing: 0px; }
+	td.cov { vertical-align: top; }
+	td.black { color: #000000; font-weight: bold; padding-top: 4px; }
+	td.white { color: #FFFFFF; font-weight: bold; padding-top: 4px; }
+	.code th { font-weight: bold; border-bottom: 2px solid black; }
+</style>
+</head>
+<body>
+<h3>Generated on  2025-11-17 12:00:30</h3>
+<p>The following table shows fixed point instrumentation results</p>
+<h2>Fixed-Point Report <span>custom_fcn<span></h2>
+<TABLE class="code">
+<TR>
+<TH class="cov padd">Simulation Coverage</TH>
+<TH>Code</TH>
+</TR>
+<TR>
+<TD class="cov white" style="background-color: rgb(5,112,9);">100%</TD>
+<TD class="padd"><pre>function y = custom_fcn(x)
+  [L,C] = size(x);
+  % Initialize the output array
+  y = zeros(L, C);
+   for i= 1:L
+</pre></TD>
+</TR>
+<TR>
+<TD class="cov black" style="background-color: rgb(255,160,118);">Once</TD>
+<TD class="padd"><pre>       for j=1:C
+          y(i,j) = 1./(1+exp(-x(i,j)));
+       end</pre></TD>
+</TR>
+<TR>
+<TD class="cov white" style="background-color: rgb(5,112,9);">100%</TD>
+<TD class="padd"><pre>
+   end   
+end</pre></TD>
+</TR>
+</TABLE>
+<TABLE><TR class="h"><th>Variable Name</th><th>Type</th><th>Sim Min</th><th>Sim Max</th><th>Static Min</th><th>Static Max</th><th>Whole Number</th><th>ProposedType <BR /> (Best For WL = 14)</th></TR><TR class="a">
+<TD class="left">C</TD><TD class="left">double</TD><TD class="right">1</TD><TD class="right">1</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 1, 0)</TD></TR>
+<TR class="b">
+<TD class="left">L</TD><TD class="left">double</TD><TD class="right">1</TD><TD class="right">1</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 1, 0)</TD></TR>
+<TR class="a">
+<TD class="left">i</TD><TD class="left">double</TD><TD class="right">1</TD><TD class="right">1</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 1, 0)</TD></TR>
+<TR class="b">
+<TD class="left">j</TD><TD class="left">double</TD><TD class="right">1</TD><TD class="right">1</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 1, 0)</TD></TR>
+<TR class="a">
+<TD class="left">x</TD><TD class="left">double</TD><TD class="right">-4.4348</TD><TD class="right">11.4571</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 9)</TD></TR>
+<TR class="b">
+<TD class="left">y</TD><TD class="left">double</TD><TD class="right">0</TD><TD class="right">0.9999894259806911</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(0, 14, 13)</TD></TR>
+</TABLE>
+
+<h2>Fixed-Point Report <span>call_custom_fcn<span></h2>
+<TABLE class="code">
+<TR>
+<TH class="cov padd">Simulation Coverage</TH>
+<TH>Code</TH>
+</TR>
+<TR>
+<TD class="cov white" style="background-color: rgb(5,112,9);">100%</TD>
+<TD class="padd"><pre>function y = call_custom_fcn(x)
+      y = custom_fcn(x);
+end</pre></TD>
+</TR>
+</TABLE>
+<TABLE><TR class="h"><th>Variable Name</th><th>Type</th><th>Sim Min</th><th>Sim Max</th><th>Static Min</th><th>Static Max</th><th>Whole Number</th><th>ProposedType <BR /> (Best For WL = 14)</th></TR><TR class="a">
+<TD class="left">x</TD><TD class="left">double</TD><TD class="right">-4.4348</TD><TD class="right">11.4571</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 9)</TD></TR>
+<TR class="b">
+<TD class="left">y</TD><TD class="left">double</TD><TD class="right">0.011718485947231226</TD><TD class="right">0.9999894259806911</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(0, 14, 13)</TD></TR>
+</TABLE>
+
+<h2>Fixed-Point Report <span>prediction_v2<span></h2>
+<TABLE class="code">
+<TR>
+<TH class="cov padd">Simulation Coverage</TH>
+<TH>Code</TH>
+</TR>
+<TR>
+<TD class="cov white" style="background-color: rgb(5,112,9);">100%</TD>
+<TD class="padd"><pre>function [y,dydx,d2ydx2,y0,y1] = prediction_v2(x,w0,b0,w1,b1)
+    % x é vetor de tamanho Nx1
+    % w0, b0, w1 são vetores de tamanho Nn
+    Nn = length(w0);
+    N = length(x);
+
+    y = zeros(1,N);
+    dydx = zeros(1,N);
+    d2ydx2 = zeros(1,N);
+
+</pre></TD>
+</TR>
+<TR>
+<TD class="cov black" style="background-color: rgb(255,160,118);">Once</TD>
+<TD class="padd"><pre>    for j = 1:N
+        yj = 0;
+        dyj = 0;
+        d2yj = 0;
+</pre></TD>
+</TR>
+<TR>
+<TD class="cov white" style="background-color: rgb(157,38,35);">0%</TD>
+<TD class="padd"><pre>        for i = 1:Nn
+            z = call_custom_fcn(w0(i)*x(j) + b0(i));
+            szp = z * (1 - z);
+            szpp = szp * (1 - 2 * call_custom_fcn(w0(i)*x(j) + b0(i)));
+
+            yj = yj + w1(i) * z;
+            dyj = dyj + w1(i) * w0(i) * szp;
+            d2yj = d2yj + w1(i) * w0(i)^2 * szpp;
+        end</pre></TD>
+</TR>
+<TR>
+<TD class="cov black" style="background-color: rgb(255,160,118);">Once</TD>
+<TD class="padd"><pre>
+        y(j) = yj + b1;
+        dydx(j) = dyj;
+        d2ydx2(j) = d2yj;
+    end</pre></TD>
+</TR>
+<TR>
+<TD class="cov white" style="background-color: rgb(5,112,9);">100%</TD>
+<TD class="padd"><pre>
+
+    % Cálculo de y(0) e y(1)
+    y0 = b1;
+    y1 = b1;
+</pre></TD>
+</TR>
+<TR>
+<TD class="cov black" style="background-color: rgb(255,160,118);">Once</TD>
+<TD class="padd"><pre>    for i = 1:Nn
+        y0 = y0 + w1(i) * call_custom_fcn(b0(i));
+        y1 = y1 + w1(i) * call_custom_fcn(w0(i) + b0(i));
+    end</pre></TD>
+</TR>
+<TR>
+<TD class="cov white" style="background-color: rgb(5,112,9);">100%</TD>
+<TD class="padd"><pre>
+end</pre></TD>
+</TR>
+</TABLE>
+<TABLE><TR class="h"><th>Variable Name</th><th>Type</th><th>Sim Min</th><th>Sim Max</th><th>Static Min</th><th>Static Max</th><th>Whole Number</th><th>ProposedType <BR /> (Best For WL = 14)</th></TR><TR class="a">
+<TD class="left">N</TD><TD class="left">double</TD><TD class="right">21</TD><TD class="right">21</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 5, 0)</TD></TR>
+<TR class="b">
+<TD class="left">Nn</TD><TD class="left">double</TD><TD class="right">10</TD><TD class="right">10</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 4, 0)</TD></TR>
+<TR class="a">
+<TD class="left">b0</TD><TD class="left">double 10 x 1 </TD><TD class="right">-1.9884</TD><TD class="right">11.4571</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 9)</TD></TR>
+<TR class="b">
+<TD class="left">b1</TD><TD class="left">double</TD><TD class="right">-0.064</TD><TD class="right">-0.064</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 16)</TD></TR>
+<TR class="a">
+<TD class="left">d2ydx2</TD><TD class="left">double 1 x 21 </TD><TD class="right">-1.967060667390791</TD><TD class="right">0.0004800120242494585</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 12)</TD></TR>
+<TR class="b">
+<TD class="left">d2yj</TD><TD class="left">double</TD><TD class="right">-2.493113661296817</TD><TD class="right">0.08335506283504145</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 11)</TD></TR>
+<TR class="a">
+<TD class="left">dydx</TD><TD class="left">double 1 x 21 </TD><TD class="right">-0.3339464179577082</TD><TD class="right">0.08308279703953747</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 14)</TD></TR>
+<TR class="b">
+<TD class="left">dyj</TD><TD class="left">double</TD><TD class="right">-0.586956074290359</TD><TD class="right">0.08539235641646978</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 13)</TD></TR>
+<TR class="a">
+<TD class="left">i</TD><TD class="left">double</TD><TD class="right">1</TD><TD class="right">10</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 4, 0)</TD></TR>
+<TR class="b">
+<TD class="left">j</TD><TD class="left">double</TD><TD class="right">1</TD><TD class="right">21</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 5, 0)</TD></TR>
+<TR class="a">
+<TD class="left">szp</TD><TD class="left">double</TD><TD class="right">1.0573907499044416e-05</TD><TD class="right">0.2495608265459946</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(0, 14, 16)</TD></TR>
+<TR class="b">
+<TD class="left">szpp</TD><TD class="left">double</TD><TD class="right">-0.09620686315147191</TD><TD class="right">0.09576312094303709</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 16)</TD></TR>
+<TR class="a">
+<TD class="left">w0</TD><TD class="left">double 10 x 1 </TD><TD class="right">-9.3674</TD><TD class="right">1.0901</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 9)</TD></TR>
+<TR class="b">
+<TD class="left">w1</TD><TD class="left">double 10 x 1 </TD><TD class="right">-0.9899</TD><TD class="right">0.5089</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 13)</TD></TR>
+<TR class="a">
+<TD class="left">x</TD><TD class="left">double 1 x 21 </TD><TD class="right">0</TD><TD class="right">1</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(0, 14, 13)</TD></TR>
+<TR class="b">
+<TD class="left">y</TD><TD class="left">double 1 x 21 </TD><TD class="right">-0.0003979168002685163</TD><TD class="right">0.04167178525448706</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 17)</TD></TR>
+<TR class="a">
+<TD class="left">y0</TD><TD class="left">double</TD><TD class="right">-0.256098338698977</TD><TD class="right">1.1016886023455341</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 12)</TD></TR>
+<TR class="b">
+<TD class="left">y1</TD><TD class="left">double</TD><TD class="right">-0.25736839998826755</TD><TD class="right">1.054435961216401</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 12)</TD></TR>
+<TR class="a">
+<TD class="left">yj</TD><TD class="left">double</TD><TD class="right">-0.19336839998826755</TD><TD class="right">1.1982762070234187</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 12)</TD></TR>
+<TR class="b">
+<TD class="left">z</TD><TD class="left">double</TD><TD class="right">0.011718485947231226</TD><TD class="right">0.9999894259806911</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(0, 14, 13)</TD></TR>
+</TABLE>
+
+</body>
+</html>
