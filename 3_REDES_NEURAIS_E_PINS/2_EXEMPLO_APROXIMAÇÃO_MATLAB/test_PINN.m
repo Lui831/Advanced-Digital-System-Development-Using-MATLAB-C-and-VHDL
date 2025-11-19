@@ -120,7 +120,7 @@ tANN = toc(t0ANN);
 
 %% Visualisation of prediction-, training- and validation data.
 figure(14); clf;
-[y,dydx,d2ydx2,y0,y1] = prediction(x,w0,b0,w1,b1);
+[y,dydx,d2ydx2,y0,y1] = prediction_v2(x,w0,b0,w1,b1);
 plot(x,y,'r-.')
 hold on;
 plot(x,P1D) % Exact solution
@@ -274,12 +274,12 @@ end
 % Sigmoid basis function
 
 % The prediction y=f(x,w,b) it's derivative and initial value
-[y,dydx,d2ydx2,y0,y1] = prediction(x,w0,b0,w1,b1);
+[y,dydx,d2ydx2,y0,y1] = prediction_v2(x,w0,b0,w1,b1);
    
 
 % The cost function for ALL points 
 % mean((c*ypp+cp*yp-f)^2)+(y(0))^2+(y(1))^2
 function c = costfunction(x,c,cp,f,w0,b0,w1,b1)
-    [~,yp,ypp,y0,y1] = prediction(x,w0,b0,w1,b1);
+    [~,yp,ypp,y0,y1] = prediction_v2(x,w0,b0,w1,b1);
     c = mean((c.*ypp+cp.*yp-f).^2)+y0^2+y1^2;
 end

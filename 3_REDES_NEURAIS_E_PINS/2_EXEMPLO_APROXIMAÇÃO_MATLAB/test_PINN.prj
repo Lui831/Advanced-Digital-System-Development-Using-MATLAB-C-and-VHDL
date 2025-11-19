@@ -19,12 +19,12 @@
     <param.hdl.BuildSpecifiedDirectory />
     <param.hdl.FrameToSampleFlag>false</param.hdl.FrameToSampleFlag>
     <param.fixptconv.InstrumentedMexFile>${PROJECT_ROOT}\codegen\prediction_v2\fixpt\prediction_v2_float_mex.mexw64</param.fixptconv.InstrumentedMexFile>
-    <param.fixptconv.InstrumentedBuildChecksum>4278557416</param.fixptconv.InstrumentedBuildChecksum>
+    <param.fixptconv.InstrumentedBuildChecksum>1888541924</param.fixptconv.InstrumentedBuildChecksum>
     <param.fixptconv.ShowCoverage>true</param.fixptconv.ShowCoverage>
-    <param.fixptconv.FixedPointValidationChecksum>3238417459</param.fixptconv.FixedPointValidationChecksum>
-    <param.fixptconv.FixedPointSourceCodeChecksum>3036168599</param.fixptconv.FixedPointSourceCodeChecksum>
+    <param.fixptconv.FixedPointValidationChecksum>2368612456</param.fixptconv.FixedPointValidationChecksum>
+    <param.fixptconv.FixedPointSourceCodeChecksum>863718439</param.fixptconv.FixedPointSourceCodeChecksum>
     <param.fixptconv.FixedPointStaticAnalysisChecksum />
-    <param.fixptconv.DefaultTestFile />
+    <param.fixptconv.DefaultTestFile>${PROJECT_ROOT}\test_PINN.m</param.fixptconv.DefaultTestFile>
     <param.fixptconv.ExcludedFixedPointVerificationFiles />
     <param.fixptconv.ExcludedFixedPointSimulationFiles />
     <param.fixptconv.FixptProposalKind>option.fixptconv.ProposeFracLenBasedOnWordLen</param.fixptconv.FixptProposalKind>
@@ -96,8 +96,8 @@
         <Function file="$(PROJECTDIR)\prediction_v2.m" name="prediction_v2" specialization="prediction_v2" specializationId="-1" uniqueId="prediction_v2">
           <Variable name="y" specid="-1">
             <Column property="Kind" type="String" value="output" />
-            <Column property="SimMin" type="Double" value="-3.979168002685163E-4" />
-            <Column property="SimMax" type="Double" value="0.04167178525448706" />
+            <Column property="SimMin" type="Double" value="-0.0015691120841353212" />
+            <Column property="SimMax" type="Double" value="0.042890640601457156" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>21</size>
@@ -116,8 +116,8 @@
           </Variable>
           <Variable name="dydx" specid="-1">
             <Column property="Kind" type="String" value="output" />
-            <Column property="SimMin" type="Double" value="-0.3339464179577082" />
-            <Column property="SimMax" type="Double" value="0.08308279703953747" />
+            <Column property="SimMin" type="Double" value="-0.33717022313817924" />
+            <Column property="SimMax" type="Double" value="0.08393566274106558" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>21</size>
@@ -136,14 +136,14 @@
           </Variable>
           <Variable name="d2ydx2" specid="-1">
             <Column property="Kind" type="String" value="output" />
-            <Column property="SimMin" type="Double" value="-1.967060667390791" />
-            <Column property="SimMax" type="Double" value="4.800120242494585E-4" />
+            <Column property="SimMin" type="Double" value="-2.007830021081794" />
+            <Column property="SimMax" type="Double" value="0.0017708721695229059" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>21</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 14, 12)" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 14, 11)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Wrap" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -156,8 +156,8 @@
           </Variable>
           <Variable name="y0" specid="-1">
             <Column property="Kind" type="String" value="output" />
-            <Column property="SimMin" type="Double" value="-0.256098338698977" />
-            <Column property="SimMax" type="Double" value="1.1016886023455341" />
+            <Column property="SimMin" type="Double" value="-0.2564828197209327" />
+            <Column property="SimMax" type="Double" value="1.1028593947316858" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -176,8 +176,8 @@
           </Variable>
           <Variable name="y1" specid="-1">
             <Column property="Kind" type="String" value="output" />
-            <Column property="SimMin" type="Double" value="-0.25736839998826755" />
-            <Column property="SimMax" type="Double" value="1.054435961216401" />
+            <Column property="SimMin" type="Double" value="-0.25774959379664564" />
+            <Column property="SimMax" type="Double" value="1.0553844449909162" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -216,8 +216,8 @@
           </Variable>
           <Variable name="w0" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="-9.3674" />
-            <Column property="SimMax" type="Double" value="1.0901" />
+            <Column property="SimMin" type="Double" value="-10.552488558509102" />
+            <Column property="SimMax" type="Double" value="1.0901040357716854" />
             <MATLABType class="double" complex="false">
               <size>10</size>
               <size>1</size>
@@ -237,7 +237,7 @@
           <Variable name="b0" specid="-1">
             <Column property="Kind" type="String" value="input" />
             <Column property="SimMin" type="Double" value="-1.9884" />
-            <Column property="SimMax" type="Double" value="11.4571" />
+            <Column property="SimMax" type="Double" value="12.679852976652167" />
             <MATLABType class="double" complex="false">
               <size>10</size>
               <size>1</size>
@@ -256,8 +256,8 @@
           </Variable>
           <Variable name="w1" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="-0.9899" />
-            <Column property="SimMax" type="Double" value="0.5089" />
+            <Column property="SimMin" type="Double" value="-0.9901496284923713" />
+            <Column property="SimMax" type="Double" value="0.5239092086991873" />
             <MATLABType class="double" complex="false">
               <size>10</size>
               <size>1</size>
@@ -276,8 +276,8 @@
           </Variable>
           <Variable name="b1" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="-0.064" />
-            <Column property="SimMax" type="Double" value="-0.064" />
+            <Column property="SimMin" type="Double" value="-0.06424081457910233" />
+            <Column property="SimMax" type="Double" value="-0.01792322183939581" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -356,8 +356,8 @@
           </Variable>
           <Variable name="yj" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-0.19336839998826755" />
-            <Column property="SimMax" type="Double" value="1.1982762070234187" />
+            <Column property="SimMin" type="Double" value="-0.19350877921754334" />
+            <Column property="SimMax" type="Double" value="1.199080025450313" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -376,8 +376,8 @@
           </Variable>
           <Variable name="dyj" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-0.586956074290359" />
-            <Column property="SimMax" type="Double" value="0.08539235641646978" />
+            <Column property="SimMin" type="Double" value="-0.5874304085651514" />
+            <Column property="SimMax" type="Double" value="0.08604990459682293" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -396,8 +396,8 @@
           </Variable>
           <Variable name="d2yj" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-2.493113661296817" />
-            <Column property="SimMax" type="Double" value="0.08335506283504145" />
+            <Column property="SimMin" type="Double" value="-2.5265070062986026" />
+            <Column property="SimMax" type="Double" value="0.08349845117273998" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -437,7 +437,7 @@
           <Variable name="z" specid="-1">
             <Column property="Kind" type="String" value="local" />
             <Column property="SimMin" type="Double" value="0.011718485947231226" />
-            <Column property="SimMax" type="Double" value="0.9999894259806911" />
+            <Column property="SimMax" type="Double" value="0.9999968867896268" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -456,8 +456,8 @@
           </Variable>
           <Variable name="szp" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="1.0573907499044416E-5" />
-            <Column property="SimMax" type="Double" value="0.2495608265459946" />
+            <Column property="SimMin" type="Double" value="3.11320068108354E-6" />
+            <Column property="SimMax" type="Double" value="0.24998434857883273" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -476,8 +476,8 @@
           </Variable>
           <Variable name="szpp" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-0.09620686315147191" />
-            <Column property="SimMax" type="Double" value="0.09576312094303709" />
+            <Column property="SimMin" type="Double" value="-0.09622504485175244" />
+            <Column property="SimMax" type="Double" value="0.0962249070174773" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -499,7 +499,7 @@
           <Variable name="y" specid="-1">
             <Column property="Kind" type="String" value="output" />
             <Column property="SimMin" type="Double" value="0.0" />
-            <Column property="SimMax" type="Double" value="0.9999894259806911" />
+            <Column property="SimMax" type="Double" value="0.9999968867896268" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -519,7 +519,7 @@
           <Variable name="x" specid="-1">
             <Column property="Kind" type="String" value="input" />
             <Column property="SimMin" type="Double" value="-4.4348" />
-            <Column property="SimMax" type="Double" value="11.4571" />
+            <Column property="SimMax" type="Double" value="12.679852976652167" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -621,7 +621,7 @@
           <Variable name="y" specid="-1">
             <Column property="Kind" type="String" value="output" />
             <Column property="SimMin" type="Double" value="0.011718485947231226" />
-            <Column property="SimMax" type="Double" value="0.9999894259806911" />
+            <Column property="SimMax" type="Double" value="0.9999968867896268" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -641,7 +641,7 @@
           <Variable name="x" specid="-1">
             <Column property="Kind" type="String" value="input" />
             <Column property="SimMin" type="Double" value="-4.4348" />
-            <Column property="SimMax" type="Double" value="11.4571" />
+            <Column property="SimMax" type="Double" value="12.679852976652167" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -674,11 +674,11 @@
     <param.fixptconv.SuppressErrorMessages>true</param.fixptconv.SuppressErrorMessages>
     <param.fixptconv.generatefixptcode.function_replacements>
       <FunctionReplacements>
+        <Replacement />
         <Replacement keyType="function" strategyType="LOOKUP_TABLE">
           <Key functionName="custom_fcn" />
           <Strategy degreeOfInterpolation="Linear" inputMax="Auto" inputMin="Auto" resolution="1000" />
         </Replacement>
-        <Replacement />
       </FunctionReplacements>
     </param.fixptconv.generatefixptcode.function_replacements>
     <param.fixptconv.PlotFunction />
@@ -693,39 +693,39 @@
     <var.lastVerifyContext />
     <param.fpDataRoot>C:\ex_PINN_Matlab\codegen\prediction_v2\fixpt/guiFpReport.mat</param.fpDataRoot>
     <param.fpUserFileChecksum />
-    <var.snapshotChecksum>1270913045</var.snapshotChecksum>
-    <param.fpLastConvertChecksum>4278557416</param.fpLastConvertChecksum>
+    <var.snapshotChecksum>729883609</var.snapshotChecksum>
+    <param.fpLastConvertChecksum>1888541924</param.fpLastConvertChecksum>
     <var.FixedPointAnalysisMode>option.FixedPointAnalysisMode.Sim</var.FixedPointAnalysisMode>
     <param.FixedPointUseDesignRanges>false</param.FixedPointUseDesignRanges>
     <param.isHLSIPcoreSupported>true</param.isHLSIPcoreSupported>
     <param.hdl.Workflow>option.workflow.GenericAsicFpga</param.hdl.Workflow>
     <param.hdl.TargetPlatform />
-    <param.hdl.SynthesisTool>No synthesis tool specified</param.hdl.SynthesisTool>
+    <param.hdl.SynthesisTool>Altera QUARTUS II</param.hdl.SynthesisTool>
     <param.hdl.InputFrequency>100</param.hdl.InputFrequency>
-    <param.hdl.TargetFrequency>0</param.hdl.TargetFrequency>
+    <param.hdl.TargetFrequency>50</param.hdl.TargetFrequency>
     <param.hdl.ReferenceDesign />
     <param.hdl.ReferenceDesignPath />
     <param.hdl.IPCoreName>prediction_v2_fixpt_ipcore</param.hdl.IPCoreName>
     <param.hdl.IPCoreVersion>1.0</param.hdl.IPCoreVersion>
     <param.hdl.AdditionalIPFiles />
     <param.hdl.ExecutionMode>option.hdl.FreeRunning</param.hdl.ExecutionMode>
-    <param.hdl.SynthesisToolChipFamily />
-    <param.hdl.SynthesisToolDeviceName />
+    <param.hdl.SynthesisToolChipFamily>Arria 10</param.hdl.SynthesisToolChipFamily>
+    <param.hdl.SynthesisToolDeviceName>10AS016C3U19E2LG</param.hdl.SynthesisToolDeviceName>
     <param.hdl.SynthesisToolPackageName />
     <param.hdl.SynthesisToolSpeedValue />
     <param.hdl.TargetInterface>
       <param.hdl.TargetInterface />
     </param.hdl.TargetInterface>
     <param.hdl.TargetLanguage>option.hdl.VHDL</param.hdl.TargetLanguage>
-    <param.hdl.CheckConformance>true</param.hdl.CheckConformance>
-    <param.hdl.LaunchConformanceReport>true</param.hdl.LaunchConformanceReport>
+    <param.hdl.CheckConformance>false</param.hdl.CheckConformance>
+    <param.hdl.LaunchConformanceReport>false</param.hdl.LaunchConformanceReport>
     <param.hdl.GenerateHDLCode>true</param.hdl.GenerateHDLCode>
     <param.hdl.GenerateEDAScripts>true</param.hdl.GenerateEDAScripts>
-    <param.hdl.GenerateReport>true</param.hdl.GenerateReport>
-    <param.hdl.GenerateOptimizationReport>true</param.hdl.GenerateOptimizationReport>
+    <param.hdl.GenerateReport>false</param.hdl.GenerateReport>
+    <param.hdl.GenerateOptimizationReport>false</param.hdl.GenerateOptimizationReport>
     <param.hdl.GenerateResourceReport>true</param.hdl.GenerateResourceReport>
     <param.hdl.GenerateComments>true</param.hdl.GenerateComments>
-    <param.hdl.MATLABSourceComments>true</param.hdl.MATLABSourceComments>
+    <param.hdl.MATLABSourceComments>false</param.hdl.MATLABSourceComments>
     <param.hdl.VHDLFileExt>.vhd</param.hdl.VHDLFileExt>
     <param.hdl.VerilogFileExt>.v</param.hdl.VerilogFileExt>
     <param.hdl.SystemVerilogFileExt>.sv</param.hdl.SystemVerilogFileExt>
@@ -863,12 +863,12 @@
     <param.hdl.HDLLintCmd />
     <param.hdl.HDLLintTerm />
     <param.hdl.TargetLanguage>option.hdl.VHDL</param.hdl.TargetLanguage>
-    <param.hdl.CheckConformance>true</param.hdl.CheckConformance>
-    <param.hdl.LaunchConformanceReport>true</param.hdl.LaunchConformanceReport>
-    <param.hdl.GenerateReport>true</param.hdl.GenerateReport>
-    <param.hdl.EnableTraceability>true</param.hdl.EnableTraceability>
+    <param.hdl.CheckConformance>false</param.hdl.CheckConformance>
+    <param.hdl.LaunchConformanceReport>false</param.hdl.LaunchConformanceReport>
+    <param.hdl.GenerateReport>false</param.hdl.GenerateReport>
+    <param.hdl.EnableTraceability>false</param.hdl.EnableTraceability>
     <param.hdl.GenerateComments>true</param.hdl.GenerateComments>
-    <param.hdl.MATLABSourceComments>true</param.hdl.MATLABSourceComments>
+    <param.hdl.MATLABSourceComments>false</param.hdl.MATLABSourceComments>
     <param.hdl.DateComment>true</param.hdl.DateComment>
     <param.hdl.UserComment />
     <param.hdl.ModulePrefix />
@@ -968,7 +968,6 @@
       <param.hdl.FrameToSampleFlag />
       <param.fixptconv.ShowCoverage />
       <param.fixptconv.FixedPointStaticAnalysisChecksum />
-      <param.fixptconv.DefaultTestFile />
       <param.fixptconv.ExcludedFixedPointVerificationFiles />
       <param.fixptconv.ExcludedFixedPointSimulationFiles />
       <param.fixptconv.FixptProposalKind />
@@ -1003,25 +1002,25 @@
       <param.hdl.Workflow />
       <param.hdl.TargetPlatform />
       <param.hdl.InputFrequency />
-      <param.hdl.TargetFrequency />
       <param.hdl.ReferenceDesign />
       <param.hdl.ReferenceDesignPath />
       <param.hdl.IPCoreName />
       <param.hdl.IPCoreVersion />
       <param.hdl.AdditionalIPFiles />
       <param.hdl.ExecutionMode />
-      <param.hdl.SynthesisToolChipFamily />
-      <param.hdl.SynthesisToolDeviceName />
       <param.hdl.SynthesisToolPackageName />
       <param.hdl.SynthesisToolSpeedValue />
       <param.hdl.TargetInterface />
       <param.hdl.TargetLanguage />
+      <param.hdl.CheckConformance />
       <param.hdl.LaunchConformanceReport />
       <param.hdl.GenerateHDLCode />
       <param.hdl.GenerateEDAScripts />
+      <param.hdl.GenerateReport />
       <param.hdl.GenerateOptimizationReport />
       <param.hdl.GenerateResourceReport />
       <param.hdl.GenerateComments />
+      <param.hdl.MATLABSourceComments />
       <param.hdl.VHDLFileExt />
       <param.hdl.VerilogFileExt />
       <param.hdl.SystemVerilogFileExt />
@@ -1223,43 +1222,48 @@
         <Inputs fileName="prediction_v2.m" functionName="prediction_v2">
           <Input Name="x">
             <Class>double</Class>
-            <UserDefined>false</UserDefined>
             <Size>1 x 21</Size>
+            <Value />
+            <InitialValue />
+            <UserDefined>false</UserDefined>
             <Complex>false</Complex>
             <Sparse>false</Sparse>
-            <Gpu>false</Gpu>
           </Input>
           <Input Name="w0">
             <Class>double</Class>
-            <UserDefined>false</UserDefined>
             <Size>10 x 1</Size>
+            <Value />
+            <InitialValue />
+            <UserDefined>false</UserDefined>
             <Complex>false</Complex>
             <Sparse>false</Sparse>
-            <Gpu>false</Gpu>
           </Input>
           <Input Name="b0">
             <Class>double</Class>
-            <UserDefined>false</UserDefined>
             <Size>10 x 1</Size>
+            <Value />
+            <InitialValue />
+            <UserDefined>false</UserDefined>
             <Complex>false</Complex>
             <Sparse>false</Sparse>
-            <Gpu>false</Gpu>
           </Input>
           <Input Name="w1">
             <Class>double</Class>
-            <UserDefined>false</UserDefined>
             <Size>10 x 1</Size>
+            <Value />
+            <InitialValue />
+            <UserDefined>false</UserDefined>
             <Complex>false</Complex>
             <Sparse>false</Sparse>
-            <Gpu>false</Gpu>
           </Input>
           <Input Name="b1">
             <Class>double</Class>
-            <UserDefined>false</UserDefined>
             <Size>1 x 1</Size>
+            <Value />
+            <InitialValue />
+            <UserDefined>false</UserDefined>
             <Complex>false</Complex>
             <Sparse>false</Sparse>
-            <Gpu>false</Gpu>
           </Input>
         </Inputs>
       </file>

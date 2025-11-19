@@ -4,7 +4,7 @@ function y = custom_fcn(x)
   y = zeros(L, C);
    for i= 1:L
        for j=1:C
-          y(i,j) = 1./(1+exp(-x(i,j)));
+          y(i,j) = 1/(1+exp(-x(i,j)));
        end
    end   
 end
