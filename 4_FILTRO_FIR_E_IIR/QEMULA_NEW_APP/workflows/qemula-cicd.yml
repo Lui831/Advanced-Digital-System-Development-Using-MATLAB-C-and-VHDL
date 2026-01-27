@@ -1,0 +1,34 @@
+name: QEMULA CI Workflow
+'on':
+  pull_request: true
+  push: true
+  schedule:
+  - cron: 0 3 * * 2
+jobs:
+  test_calculate_crc_1:
+    runs-on: self-hosted
+    needs:
+    - spellcheck
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Configurar Python do sistema
+      run: 'echo "PYTHON_LOCATION=/usr/bin/python3.11" >> $GITHUB_ENV
+
+        echo "PATH=$PYTHON_LOCATION/bin:$PATH" >> $GITHUB_ENV'
+    - name: Criar ambiente virtual
+      run: python3 -m venv venv
+    - name: "Ativar ambiente virtual e instalar depend\xEAncias"
+      run: 'source venv/bin/activate
+
+        pip install --upgrade pip
+
+        pip install -r requirements.txt
+
+        pip install pytest-xdist'
+    - name: Run test_calculate_crc_1
+      env:
+        PYTHONPATH: ${{ github.workspace }}/Docker_Raw_Codes/src-interface/test
+      run: 'source venv/bin/activate
+
+        pytest -v -n auto -k "test_calculate_crc_1" Docker_Raw_Codes/src-interface/test/'

@@ -1,0 +1,38 @@
+UART Communication Logs
+Generated: 2025-08-31 12:52:00
+Host: localhost
+Port: 5050
+--------------------------------------------------
+
+[INFO] Connecting to localhost:5050...
+[INFO] Trying to connect...
+[INFO] Connection established successfully!
+[INFO] Connected to localhost:5050
+[RX] 
+  MKPROM2 boot loader v2.0.69
+[RX] 
+  Copyright Cobham Gaisler AB - all rights reserved
+[RX] 
+  system clock   : 50.0 MHz
+[RX] 
+  baud rate      : 19171 baud
+[RX] 
+  prom           : 32 K, (15/15) ws (r/w)
+[RX] 
+  sdram          : 131072 M, 1 bank(s), 9-bit column
+[RX] 
+  sdram          : cas: 2, trp: 40 ns, trfc: 80 ns, refresh 7.8 us
+[RX] 
+  decompressing .text to 0x40000000
+[RX] 
+  decompressing .data to 0x4001ed70
+[RX] 
+  starting ccu_connection_test
+[RX] 
+VERITAS/ENVISION ASW v0.0.1
+[RX] 
+(c) German Aerospace Center
+[RX] 
+Date of Build: Aug  6 202516:02:11
+[RX] 
+HW: 0 0 

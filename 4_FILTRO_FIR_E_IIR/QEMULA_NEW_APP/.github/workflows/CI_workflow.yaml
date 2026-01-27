@@ -1,0 +1,506 @@
+name: CI Workflow
+
+on:
+  pull_request:
+  push:
+  schedule:
+    # run every Tuesday at 3 AM UTC
+    - cron: "0 3 * * 2"
+  workflow_dispatch:  # Permite execução manual
+
+# This workflow is triggered on push and pull request events to the main branch
+jobs:
+
+  # Spell Check job
+  spellcheck:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Spell check
+        uses: codespell-project/actions-codespell@master
+        with:
+          check_filenames: true
+          check_hidden: true
+          ignore_words_file: codespell-ignore-words-list.txt
+          skip: Control_Interface_Related_Codes, Delivery_Docker
+
+  # Python Test jobs
+  test_calculate_crc_1:
+    runs-on: self-hosted
+    needs: spellcheck
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Configurar Python do sistema
+        run: |
+          echo "PYTHON_LOCATION=/usr/bin/python3.11" >> $GITHUB_ENV
+          echo "PATH=$PYTHON_LOCATION/bin:$PATH" >> $GITHUB_ENV
+      
+      - name: Criar ambiente virtual
+        run: python3 -m venv venv
+      
+      - name: Ativar ambiente virtual e instalar dependências
+        run: |
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest-xdist
+      
+      - name: Run test calculate CRC 1
+        env:
+          PYTHONPATH: ${{ github.workspace }}/Docker_Raw_Codes/src-interface/test
+        run: |
+          source venv/bin/activate
+          pytest -v -n auto -k "test_calculate_crc_1" Docker_Raw_Codes/src-interface/test/
+
+  test_validate_packet:
+    runs-on: self-hosted
+    needs: spellcheck
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Configurar Python do sistema
+        run: |
+          echo "PYTHON_LOCATION=/usr/bin/python3.11" >> $GITHUB_ENV
+          echo "PATH=$PYTHON_LOCATION/bin:$PATH" >> $GITHUB_ENV
+      
+      - name: Criar ambiente virtual
+        run: python3 -m venv venv
+      
+      - name: Ativar ambiente virtual e instalar dependências
+        run: |
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest-xdist
+      
+      - name: Run test validate packet
+        env:
+          PYTHONPATH: ${{ github.workspace }}/Docker_Raw_Codes/src-interface/test
+        run: |
+          source venv/bin/activate
+          pytest -v -n auto -k "test_validate_packet" Docker_Raw_Codes/src-interface/test/
+
+  test_process_packet:
+    runs-on: self-hosted
+    needs: [test_calculate_crc_1, test_validate_packet]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Configurar Python do sistema
+        run: |
+          echo "PYTHON_LOCATION=/usr/bin/python3.11" >> $GITHUB_ENV
+          echo "PATH=$PYTHON_LOCATION/bin:$PATH" >> $GITHUB_ENV
+      
+      - name: Criar ambiente virtual
+        run: python3 -m venv venv
+      
+      - name: Ativar ambiente virtual e instalar dependências
+        run: |
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest-xdist
+      
+      - name: Run test process packet
+        env:
+          PYTHONPATH: ${{ github.workspace }}/Docker_Raw_Codes/src-interface/test
+        run: |
+          source venv/bin/activate
+          pytest -v -n auto -k "test_process_packet" Docker_Raw_Codes/src-interface/test/
+
+  test_calculate_crc_2:
+    runs-on: self-hosted
+    needs: [spellcheck]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Configurar Python do sistema
+        run: |
+          echo "PYTHON_LOCATION=/usr/bin/python3.11" >> $GITHUB_ENV
+          echo "PATH=$PYTHON_LOCATION/bin:$PATH" >> $GITHUB_ENV
+      
+      - name: Criar ambiente virtual
+        run: python3 -m venv venv
+      
+      - name: Ativar ambiente virtual e instalar dependências
+        run: |
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest-xdist
+      
+      - name: Run test calculate CRC 2
+        env:
+          PYTHONPATH: ${{ github.workspace }}/Docker_Raw_Codes/src-interface/test
+        run: |
+          source venv/bin/activate
+          pytest -v -n auto -k "test_calculate_crc_2" Docker_Raw_Codes/src-interface/test/
+
+  test_identify_command:
+    runs-on: self-hosted
+    needs: [spellcheck]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Configurar Python do sistema
+        run: |
+          echo "PYTHON_LOCATION=/usr/bin/python3.11" >> $GITHUB_ENV
+          echo "PATH=$PYTHON_LOCATION/bin:$PATH" >> $GITHUB_ENV
+      
+      - name: Criar ambiente virtual
+        run: python3 -m venv venv
+      
+      - name: Ativar ambiente virtual e instalar dependências
+        run: |
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest-xdist
+      
+      - name: Run test identify command
+        env:
+          PYTHONPATH: ${{ github.workspace }}/Docker_Raw_Codes/src-interface/test
+        run: |
+          source venv/bin/activate
+          pytest -v -n auto -k "test_identify_command" Docker_Raw_Codes/src-interface/test/
+
+  test_construct_packet:
+    runs-on: self-hosted
+    needs: [test_calculate_crc_2, test_identify_command]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Configurar Python do sistema
+        run: |
+          echo "PYTHON_LOCATION=/usr/bin/python3.11" >> $GITHUB_ENV
+          echo "PATH=$PYTHON_LOCATION/bin:$PATH" >> $GITHUB_ENV
+      
+      - name: Criar ambiente virtual
+        run: python3 -m venv venv
+      
+      - name: Ativar ambiente virtual e instalar dependências
+        run: |
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest-xdist
+      
+      - name: Run test construct packet
+        env:
+          PYTHONPATH: ${{ github.workspace }}/Docker_Raw_Codes/src-interface/test
+        run: |
+          source venv/bin/activate
+          pytest -v -n auto -k "test_construct_packet" Docker_Raw_Codes/src-interface/test/
+
+  test_failed_recieve:
+    runs-on: self-hosted
+    needs: [test_construct_packet]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Configurar Python do sistema
+        run: |
+          echo "PYTHON_LOCATION=/usr/bin/python3.11" >> $GITHUB_ENV
+          echo "PATH=$PYTHON_LOCATION/bin:$PATH" >> $GITHUB_ENV
+      
+      - name: Criar ambiente virtual
+        run: python3 -m venv venv
+      
+      - name: Ativar ambiente virtual e instalar dependências
+        run: |
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest-xdist
+      
+      - name: Run test failed recieve
+        env:
+          PYTHONPATH: ${{ github.workspace }}/Docker_Raw_Codes/src-interface/test
+        run: |
+          source venv/bin/activate
+          pytest -v -n auto -k "test_failed_recieve" Docker_Raw_Codes/src-interface/test/
+
+  # Docker Test job
+  build_and_test:
+    runs-on: self-hosted
+    needs: spellcheck
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Build Docker Compose services
+        run: |
+          echo "::group::Build Docker Compose services"
+          cd Docker_Raw_Codes
+          docker-compose build
+      
+      - name: Run Docker Compose services
+        run: |
+          echo "::group::Run Docker Compose services"
+          cd Docker_Raw_Codes
+          docker-compose up -d
+      
+      - name: Wait for container to be ready
+        run: |
+          echo "::group::Wait for container to be ready"
+          until nc -z localhost 4322; do
+            echo "Waiting for container..."
+            sleep 5
+          done
+      
+      - name: List running containers
+        run: |
+          echo "::group::List running containers"
+          docker ps -a
+      
+      - name: Check container logs
+        run: |
+          echo "::group::Check container logs"
+          docker logs docker_qemu_sparc
+      
+      - name: Check container status
+        run: |
+          echo "::group::Check container status"
+          docker inspect -f '{{.State.Status}}' docker_qemu_sparc
+      
+      - name: Configurar Python do sistema
+        run: |
+          echo "PYTHON_LOCATION=/usr/bin/python3.11" >> $GITHUB_ENV
+          echo "PATH=$PYTHON_LOCATION/bin:$PATH" >> $GITHUB_ENV
+      
+      - name: Criar ambiente virtual
+        run: python3 -m venv venv
+      
+      - name: Ativar ambiente virtual e instalar dependências
+        run: |
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Check if test.csv exists
+        run: ls -l Testing_Codes/Protocol_Testing_Code/
+      
+      - name: Check Python script
+        run: |
+          echo "::group::Check Python script"
+          source venv/bin/activate
+          python3 -m py_compile Testing_Codes/Protocol_Testing_Code/main.py
+      
+      - name: Run client_docker
+        env:
+          PYTHONPATH: ${{ github.workspace }}/Testing_Codes/Protocol_Testing_Code/
+        run: |
+          source venv/bin/activate
+          python3 Testing_Codes/Protocol_Testing_Code/main.py
+
+      - name: Upload log file
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-logs
+          path: Testing_Codes/Protocol_Testing_Code/log.txt
+
+  test_the_instrument:
+    runs-on: self-hosted
+    needs: build_and_test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Build Docker Compose services
+        run: |
+          echo "::group::Build Docker Compose services"
+          cd Docker_Raw_Codes
+          docker-compose build
+      
+      - name: Run Docker Compose services
+        run: |
+          echo "::group::Run Docker Compose services"
+          cd Docker_Raw_Codes
+          docker-compose up -d
+      
+      - name: Wait for container to be ready for docker (4322)
+        run: |
+          echo "::group::Wait for container to be ready"
+          until nc -z localhost 4322; do
+            echo "Waiting for container..."
+            sleep 5
+          done
+      
+      - name: List running containers
+        run: |
+          echo "::group::List running containers"
+          docker ps -a
+      
+      - name: Check container logs
+        run: |
+          echo "::group::Check container logs"
+          docker logs docker_qemu_sparc
+      
+      - name: Check container status
+        run: |
+          echo "::group::Check container status"
+          docker inspect -f '{{.State.Status}}' docker_qemu_sparc
+      
+      - name: Configurar Python do sistema
+        run: |
+          echo "PYTHON_LOCATION=/usr/bin/python3.11" >> $GITHUB_ENV
+          echo "PATH=$PYTHON_LOCATION/bin:$PATH" >> $GITHUB_ENV
+      
+      - name: Criar ambiente virtual
+        run: python3 -m venv venv
+      
+      - name: Ativar ambiente virtual e instalar dependências
+        run: |
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Check Python script
+        run: |
+          echo "::group::Check Python script"
+          source venv/bin/activate
+          python3 -m py_compile Testing_Codes/Protocol_Testing_Code/main3.py
+      
+      - name: Run client_docker
+        env:
+          PYTHONPATH: ${{ github.workspace }}/Testing_Codes/Protocol_Testing_Code/
+        run: |
+          source venv/bin/activate
+          python3 Testing_Codes/Protocol_Testing_Code/main3.py
+      
+      - name: Wait for container to be ready for instrument (5050)
+        run: |
+          echo "::group::Wait for container to be ready"
+          until nc -z localhost 5050; do
+            echo "Waiting for container..."
+            sleep 5
+          done
+
+      - name: Run client_instrument
+        env:
+          PYTHONPATH: ${{ github.workspace }}Testing_Codes/Protocol_Testing_Code/
+        run: |
+          python3 Testing_Codes/Protocol_Testing_Code/client_instrument.py  
+
+      - name: Criar ambiente virtual
+        run: python3 -m venv venv
+      
+      - name: Ativar ambiente virtual e instalar dependências
+        run: |
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pandas
+          pip list
+
+      - name: Run client_docker
+        env:
+          PYTHONPATH: ${{ github.workspace }}/Testing_Codes/Protocol_Testing_Code/
+        run: |
+          source venv/bin/activate
+          python3 Testing_Codes/Protocol_Testing_Code/main4.py
+
+      - name: Shutdown Docker Compose services
+        run: |
+          echo "::group::Shutdown Docker Compose services"
+          cd Docker_Raw_Codes
+          docker ps -a
+          docker-compose down || echo "docker-compose down falhou, tentando forçar"
+        shell: bash
+
+      - name: Forçar parada e remoção de container travado
+        run: |
+          CONTAINER_NAME=docker_qemu_sparc
+
+          echo "Tentando pegar o PID do container..."
+          CONTAINER_PID=$(docker inspect --format '{{.State.Pid}}' $CONTAINER_NAME 2>/dev/null || echo "")
+
+          if [ ! -z "$CONTAINER_PID" ]; then
+            echo "Encontrado PID: $CONTAINER_PID. Forçando parada com sudo kill -9..."
+            sudo kill -9 $CONTAINER_PID || echo "Não foi possível matar o processo (pode já ter parado)"
+            sleep 2
+          else
+            echo "PID não encontrado ou container já parado."
+          fi
+
+          echo "Removendo container manualmente..."
+          docker rm -f $CONTAINER_NAME || echo "Container já removido ou erro ao remover"
+        shell: bash
+
+  # clear-cache job
+  clear-cache:
+    runs-on: self-hosted
+    needs: [test_the_instrument, test_failed_recieve, test_process_packet]
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Clear GitHub Actions cache
+        uses: actions/github-script@v6
+        with:
+          script: |
+            console.log("Starting cache cleanup...");
+            const { data: { actions_caches } } = await github.rest.actions.getActionsCacheList({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            if (actions_caches.length === 0) {
+              console.log("No caches found to clear.");
+            } else {
+              for (const cache of actions_caches) {
+                console.log(`Deleting cache with ID: ${cache.id}`);
+                await github.rest.actions.deleteActionsCacheById({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  cache_id: cache.id,
+                });
+              }
+              console.log("Cache cleanup completed.");
+            }
+
+  # continuos deploy job synology
+  deploy:
+    runs-on: self-hosted
+    needs: [clear-cache]
+    steps:
+      - name: Deploy to NAS via FTP with lftp
+        run: |
+          lftp -u "$FTP_USER","$FTP_PASS" ftp://syn_ds224p_nsee.local -e "set ssl:verify-certificate no; mirror -R ./ '/Documentos do NSEE/Github/QEMULA-Rep'; quit"
+        env:
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}

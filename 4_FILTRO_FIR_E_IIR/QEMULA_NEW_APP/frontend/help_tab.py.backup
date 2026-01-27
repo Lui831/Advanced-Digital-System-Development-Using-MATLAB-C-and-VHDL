@@ -1,0 +1,637 @@
+import sys
+from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
+                             QHBoxLayout, QLabel, QPushButton, QTextEdit, 
+                             QFrame, QLineEdit, QSplitter, QListWidget, QTabWidget,
+                             QListWidgetItem, QCheckBox, QScrollArea, QSlider,
+                             QComboBox, QSpinBox, QGroupBox, QGridLayout)
+from PySide6.QtCore import Qt, QSize, Signal, QPropertyAnimation, QRect
+from PySide6.QtGui import QFont, QPalette, QColor, QIcon, QPainter, QPen, QBrush
+
+"""
+Auto-generated content from .docx documents
+Last sync: 2025-09-02 17:05:25
+Documents processed: Official Requirements, QEMULA_User_Manual
+"""
+
+class AccordionItem(QWidget):
+    """Widget de item accordion expansível"""
+    
+    def __init__(self, title, content, parent=None):
+        super().__init__(parent)
+        self.is_expanded = False
+        self.content_widget = None
+        self.setup_ui(title, content)
+        
+    def setup_ui(self, title, content):
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setSpacing(0)
+        
+        # Header do accordion
+        self.header = QPushButton(title)
+        self.header.setFixedHeight(50)
+        self.header.setStyleSheet("""
+            QPushButton {
+                background-color: #333333;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 14px;
+                font-weight: bold;
+                text-align: left;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            QPushButton:hover {
+                background-color: #555555;
+            }
+        """)
+        self.header.clicked.connect(self.toggle_content)
+        layout.addWidget(self.header)
+        
+        # Conteúdo do accordion
+        self.content_widget = QWidget()
+        self.content_widget.setStyleSheet("""
+            QWidget {
+                background-color: #fafafa;
+                border: 1px solid #e0e0e0;
+                border-top: none;
+                border-radius: 0 0 8px 8px;
+            }
+        """)
+        
+        content_layout = QVBoxLayout(self.content_widget)
+        content_layout.setContentsMargins(20, 15, 20, 15)
+        content_label = QLabel(content)
+        content_label.setWordWrap(True)
+        content_label.setFont(QFont("Arial", 11))
+        content_label.setStyleSheet("""
+            QLabel {
+                line-height: 1.4;
+                color: #2c3e50;
+                background-color: transparent;
+                border: none;
+            }
+        """)
+        # Para melhor formatação de texto longo
+        content_label.setTextFormat(Qt.PlainText)
+        content_label.setAlignment(Qt.AlignTop | Qt.AlignLeft)
+        content_layout.addWidget(content_label)
+        
+        self.content_widget.setVisible(False)
+        layout.addWidget(self.content_widget)
+        
+        self.update_header_icon()
+        
+    def toggle_content(self):
+        self.is_expanded = not self.is_expanded
+        self.content_widget.setVisible(self.is_expanded)
+        self.update_header_icon()
+        
+    def update_header_icon(self):
+        icon = "▲" if self.is_expanded else "▼"
+        current_text = self.header.text()
+        # Remove o ícone anterior se existir
+        if current_text.endswith(" ▲") or current_text.endswith(" ▼"):
+            current_text = current_text[:-2]
+        self.header.setText(f"{current_text} {icon}")
+
+class QemulaHelpApp(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.accordion_items = []  # Lista para armazenar referências dos accordions
+        self.setWindowTitle("QEMULA APP - Help")
+        self.setGeometry(100, 100, 1400, 800)
+        self.setup_ui()
+        self.apply_styles()
+    
+    def setup_ui(self):
+        # Widget central
+        central_widget = QWidget()
+        self.setCentralWidget(central_widget)
+        
+        # Layout principal horizontal
+        main_layout = QHBoxLayout(central_widget)
+        main_layout.setContentsMargins(0, 0, 0, 0)
+        main_layout.setSpacing(0)
+        
+        # Sidebar esquerda
+        sidebar = self.create_sidebar()
+        main_layout.addWidget(sidebar)
+        
+        # Área principal
+        main_area = self.create_main_area()
+        main_layout.addWidget(main_area)
+    
+    def create_sidebar(self):
+        sidebar = QFrame()
+        sidebar.setFixedWidth(220)
+        sidebar.setFrameStyle(QFrame.Box)
+        
+        layout = QVBoxLayout(sidebar)
+        layout.setContentsMargins(10, 20, 10, 10)
+        layout.setSpacing(5)
+        
+        # Título QEMULA APP
+        title = QLabel("QEMULA APP")
+        title.setFont(QFont("Arial", 14, QFont.Bold))
+        title.setAlignment(Qt.AlignCenter)
+        layout.addWidget(title)
+        
+        layout.addSpacing(20)
+        
+        # Menu items
+        menu_items = [
+            ("Docker", False),
+            ("Control", False),
+            ("Transciever SPW", False),
+            ("Transciever UART", False),
+            ("Settings", False),
+            ("Help", True)  # Item ativo
+        ]
+        
+        for item_text, is_active in menu_items:
+            item = QPushButton(item_text)
+            item.setFixedHeight(40)
+            item.setFont(QFont("Arial", 10))
+            if is_active:
+                item.setStyleSheet("""
+                    QPushButton {
+                        background-color: #666666;
+                        color: white;
+                        border: none;
+                        border-radius: 8px;
+                        text-align: left;
+                        padding-left: 15px;
+                    }
+                """)
+            else:
+                item.setStyleSheet("""
+                    QPushButton {
+                        background-color: transparent;
+                        color: #666666;
+                        border: none;
+                        border-radius: 8px;
+                        text-align: left;
+                        padding-left: 15px;
+                    }
+                    QPushButton:hover {
+                        background-color: #f0f0f0;
+                    }
+                """)
+            layout.addWidget(item)
+        
+        layout.addStretch()
+        return sidebar
+    
+    def create_main_area(self):
+        main_widget = QWidget()
+        layout = QVBoxLayout(main_widget)
+        layout.setContentsMargins(20, 20, 20, 20)
+        layout.setSpacing(20)
+
+        # Header
+        header = self.create_header()
+        layout.addWidget(header)
+
+        # Scroll area para o conteúdo
+        scroll_area = QScrollArea()
+        scroll_widget = QWidget()
+        scroll_layout = QVBoxLayout(scroll_widget)
+        scroll_layout.setSpacing(20)
+        
+        # Seção de ajuda com accordions
+        help_section = self.create_help_section()
+        scroll_layout.addWidget(help_section)
+        
+        scroll_layout.addStretch()
+        
+        scroll_area.setWidget(scroll_widget)
+        scroll_area.setWidgetResizable(True)
+        scroll_area.setStyleSheet("""
+            QScrollArea {
+                border: none;
+                background-color: transparent;
+            }
+        """)
+        
+        layout.addWidget(scroll_area)
+
+        return main_widget
+    
+    def create_header(self):
+        from PySide6.QtGui import QPixmap
+        header = QFrame()
+        layout = QHBoxLayout(header)
+        
+        # Título da interface
+        title = QLabel("Help & Documentation")
+        title.setFont(QFont("Arial", 16, QFont.Bold))
+        layout.addWidget(title)
+        
+        layout.addStretch()
+        
+        # Status QEMULA run
+        status_label = QLabel("QEMULA run")
+        status_label.setFont(QFont("Arial", 12))
+        layout.addWidget(status_label)
+        
+        # Pause icon (simulado com texto)
+        pause_icon = QLabel("⏸️")
+        pause_icon.setFont(QFont("Arial", 16))
+        layout.addWidget(pause_icon)
+        
+        layout.addStretch()
+        
+        # Social icons (replace emojis with images)
+        icons_layout = QHBoxLayout()
+        icon_files = [
+            "images/docker.png",
+            "images/email.png",
+            "images/github.png",
+            "images/podman.png"
+        ]
+        # URLs de documentação
+        doc_urls = [
+            "https://docs.docker.com/",
+            "https://www.rfc-editor.org/rfc/rfc5322",  # Email RFC
+            "https://docs.github.com/pt",
+            "https://podman.io/getting-started/"
+        ]
+        from PySide6.QtWidgets import QPushButton
+        from PySide6.QtGui import QDesktopServices
+        from PySide6.QtCore import QUrl
+        for icon_path, url in zip(icon_files, doc_urls):
+            btn = QPushButton()
+            btn.setCursor(Qt.PointingHandCursor)
+            btn.setStyleSheet("background: transparent; border: none;")
+            try:
+                pixmap = QPixmap(icon_path)
+                pixmap = pixmap.scaled(48, 48, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+                btn.setIcon(QIcon(pixmap))
+                btn.setIconSize(QSize(48, 48))
+            except:
+                # Fallback se a imagem não existir
+                btn.setText("🔗")
+                btn.setFont(QFont("Arial", 24))
+            btn.setFixedSize(52, 52)
+            btn.clicked.connect(lambda checked, link=url: QDesktopServices.openUrl(QUrl(link)))
+            icons_layout.addWidget(btn)
+        layout.addLayout(icons_layout)
+        
+        return header
+    
+    def create_help_section(self):
+        # Seção de ajuda com accordions completos
+        group = QGroupBox("QEMULA Complete Documentation & Help Guide 📚")
+        group.setFont(QFont("Arial", 14, QFont.Bold))
+        layout = QVBoxLayout(group)
+        layout.setSpacing(10)
+        
+        # Adicionar uma introdução antes dos accordions
+        intro_label = QLabel("""
+        <div style='background-color: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 10px;'>
+        <h3 style='color: #1976d2; margin: 0;'>📋 QEMULA Application v0.1.0 - Complete User Manual</h3>
+        <p style='margin: 5px 0 0 0; color: #424242;'>
+        Welcome to the comprehensive documentation for QEMULA - your complete QEMU emulation management solution.
+        Expand any section below to access detailed information about specific features and functionality.
+        </p>
+        </div>
+        """)
+        intro_label.setWordWrap(True)
+        layout.addWidget(intro_label)
+        
+        # Lista para armazenar referências dos accordion items
+        self.accordion_items = []
+        
+        # Itens de ajuda completos baseados na documentação oficial
+        help_items = [
+            ("Official Requirements", """
+QEMULA Official Requirements
+
+Introduction:
+Table of signatures
+
+Introduction:
+The Embedded Electronic Systems Center (NSEE) of the Instituto Mauá de Tecnologia (IMT) has a solid record of accomplishment in developing solutions for space missions, which began in 2011 with the SimuCam project for the European Space Agency's (ESA) PLATO mission, in partnership with institutions such as LESIA, DLR, and IWF. Although SimuCam is not the focus of this work, its success positioned NSEE as an important collaborator in international space projects.
+As a result of this expertise, NSEE was invited to participate in the VERITAS and EnVision missions led by NASA's Jet Propulsion Laboratory (JPL) and ESA. Both missions aims to study Venus to understand its geological evolution and assess conditions for life. Within them, the German Aerospace Center (DLR) is developing the Venus Emissivity Mapper (VEM), a spectrometer that includes an optical component and an electronic control unit called VenSpec-M. The software and optics of VenSpec-M are being developed by the DLR, and the partnership with NSEE involves the development of a virtualized version of the electronic interfaces of this instrument using the QEMU emulator.
+The main goal of this project is to create a virtualized environment that allows for the development and validation of space software without the need for physical hardware, regarding the control unit VenSpec-M. The virtualization of VenSpec-M aims to faithfully replicate the characteristics and behavior of the real hardware, including the simulation of a virtual SpaceWire link for communication with other control units. This enables the configuration of test data and the injection of simulated faults, functionalities that would be unfeasible or risky on validated physical hardware. Additionally, the virtualized system will be integrated into continuous integration (CI/CD) pipelines, allowing for autonomous testing and validation of the software developed for VenSpec-M.
+
+German Aerospace Center::
+The German Aerospace Center, known as DLR (Deutsches Zentrum für Luft- und Raumfahrt), is Germany's national research center for aeronautics, space, energy, transport, and security. Established to conduct research and development activities in these fields, DLR plays a crucial role in advancing scientific knowledge and technological innovations, not just within Germany but globally.
+DLR collaborates with various international partners, including space agencies like NASA and ESA (European Space Agency). Its involvement in major missions, such as those exploring Mars, the Moon, or studying Earth’s climate, highlights its global influence. For example, DLR is involved in high-profile missions like Mars Express, Rosetta, and VERITAS, providing essential technologies like scientific instruments and control systems.
+DLR’s efforts position it as a leader in aerospace innovation, shaping the future of space exploration, air travel, and sustainable technology.
+
+Embedded Electronic Systems Center::
+The NSEE (Núcleo de Sistemas Eletrônicos Embarcados), or Embedded Electronic Systems Center, is a specialized research and development center within the Instituto Mauá de Tecnologia (IMT) in Brazil. The center focuses on the design, development, and integration of advanced embedded electronic systems, particularly for challenging applications in space, aeronautics, and other high-tech industries.
+The NSEE is committed to technological innovation, integrating cutting-edge tools like continuous integration/continuous deployment (CI/CD) pipelines into its processes. This ensures that the software and hardware systems it develops are rigorously tested and validated through automated processes, enhancing the reliability and performance of the solutions for critical applications.
+Through its expertise in embedded electronics and international collaborations, NSEE plays a crucial role in advancing space technology and other high-stakes sectors that require robust, reliable electronic systems.
+
+2.1. 	General Structure:
+To provide a detailed description of the project, its overall structure and data flow will be specified with a focus on normal operation.
+Figure 1 – General overview of QEMULA’s Structure.
+Source: the authors.
+From Figure 1 above, it is possible to understand the general structure of QEMULA itself. Ideally, QEMULA is contained within a Docker container, isolated from an external system, and exposes at least three TCP/IP links that fall into three different categories:
+Control Link: Comprising a single TCP/IP link, it is responsible for receiving commands and sending reports related to the control and interaction with the emulated instrument.
+Instrument Link: Comprising an arbitrary number of TCP/IP links, it is responsible for the transmission and reception of data, which are essentially analogous to the SpaceWire protocol, in direct communication with the emulated instrument.
+Debug Link: Comprising a single TCP/IP connected to QEMULA Controller, it is responsible for sending and receiving Debug commands through an interface mediated by the GDB Server. Its presence at emulation time is optional: the user may configure the GDB Server exclusively by Instrument Link commands, debugging the test code indirectly.
+For the last two categories of TCP/IP links, there is no immediate need for a dedicated interface with the emulated QEMU instrument, as they are directly connected to it. However, for the first category, the implementation of a controller is required, which will receive user commands and requests for the system based on a defined protocol. The controller will then take appropriate actions within the system or on the emulated instrument. In certain cases, the received command may also require information from the emulated instrument, in which case the controller will be responsible for generating and sending an appropriate report through the Control Link.
+It is important to note that the modular structure presented here may undergo changes during the further development and expansion of QEMULA, to meet future requirements that may arise.
+
+2.2. 	System Data Flow:
+Figure 2 – General overview of QEMULA’s Data Flow.
+Source: the authors.
+Figure 2 presents a flow diagram illustrating the data flow within QEMULA, an environment designed to simulate a range of use cases detailed in the accompanying documentation.
+The process begins with the user submitting the packets that will be simulated. These packets are essential for driving the simulation scenarios. Once the packets are received, they undergo processing and normalization to conform to the internal protocol of the DLR CI-CD Actor interface.
+After normalization, the packets are ready for transmission. The Socket Transmitter takes over at this stage, managing the transfer of control data between the user interface and the system’s Control Link (or Control Interface). This transmission occurs over TCP, so it is necessary to correctly configure the socket's address and transmission port.
+The next stage in the data flow involves enabling the socket for communication. Although this description does not go into the potential causes of failure, it is assumed that the protocol message is successfully transmitted to the Control Interface. The first action of the Control Interface upon receiving the packet is to process its contents, which involves interpreting the header and body. This is handled by the Receiver routines, which classify the packets based on predefined message code tables. Once classified, the message is stored in a FIFO Buffer, where it waits for further processing.
+Access to this buffer is managed by a routine known as Try Get Buffer, which retrieves the first item in the queue, allowing the packet to proceed. However, whether the packet advances depend on feedback from the QEMU State Machine, which operates in two primary states:
+CONFIG: Responsible for configuring all simulation parameters.
+RUN: Indicates that the emulated hardware is ready to accept simulation data.
+Once the required conditions are met, the packet moves forward to the processing stage. During this phase, control methods are identified, and the system advances to execute one of several operations in QEMU. These include various commands, which can be seen at QEMULA’s User Manual (QEMULA-UM-I0.1).
+Certain commands interact directly with the QEMU Monitor's library, issuing commands and receiving answers from the running QEMU machine. Before proceeding, the system requires a response from the Socket Controller channel. Once received, the control edge code compiles and repackages the packet, which is then externalized from the Docker environment via TCP. This is achieved through communication between the Sender and Receiver components of the user interface.
+This description represents the first version of the QEMULA environment, focusing on the control requirements and the interface between QEMU, Docker, and the user. A careful review of the content is advised, and any necessary adjustments should be made to both the diagram and the accompanying text.
+
+QEMULA’s Use Cases:
+The QEMULA system, essentially, encompasses two general use cases in its operation: system execution and system configuration.
+In the configuration use case, four specific use cases are derived, namely the configuration of emulation parameters, code injection, logging setup, and housekeeping configuration. For the execution use case, three specific use cases are derived, comprising emulation control and management, interaction with the emulated instrument, and operation in debug mode. The overall representation of the system's use cases, and their respective derivations can be better visualized in Figure 1 below.
+
+Requirements:
+This section outlines the expected requirements for the QEMULA project. Beginning with a general requirements diagram, these requirements will be detailed and specified for further clarity.
+To clarify the types of imperative terms used in each specification, refer to Table 1 below.
+Table 1 – Description of usual imperative terms used in requirements.
+Source: the authors.
+Complementing the terms presented, the types of verification designed for testing the proposed requirements will also be described. These definitions can be found in Table 2.
+Table 2 – Description of verification terms used in requirements.
+Source: the authors.
+
+4.1. 	Requirements Diagram and General Overview:
+In Figure 2 below, the conceptual groupings of the requirements are outlined, which include Main Requirements, Emulation Requirements, Control Interface Requirements, Debug Requirements, and Instrument Interface Requirements.
+Figure 2 – General requirements of QEMULA.
+Source: the authors.
+
+4.2. 	Main Requirements:
+Note 1: modular architecture enables future customization and adaptation of the system to meet upcoming requirements.
+
+4.3. 	Emulation Requirements:
+Note 1: this requirement matches the specification proposed at QEM-REQ-MA-10.
+Note 2: ultimately, this would lead to entirely emulating all of VenSpec-M software interfaces device, proposed in QEM-REQ-MA-01.
+
+4.4 	Control Interface Requirements:
+Note 1: this statement is true even if QEMULA doesn’t have the need to return extra information.
+Note 1: like pausing the emulation, dumping memory…
+Note 1: CONFIG_STATE and RUN_STATE, as described in QEM-REQ-MA-06.
+Note 1: this ensures that future customization and addition of new requisitions and answers is possible and viable.
+Note 1: the execution status should be better specified at the requisition and answer packages description.
+Note 1: for each type of package, the content of its header and body must be specified, based on the specific type of function to which it is related.
+Note 1: this is especially relevant to the “Inject external code” operation pointed in QEM-REQ-CI-14, because of the possible size of the software to be tested in QEMULA.
+
+4.5 	Instrument Interface Requirements:
+Note 1: Depending on the version of the emulated instrument implemented, there may be a varying number of stdout-type devices that require a specific TCP/IP link.
+Note 1: this term is utilized here, because it’s not imperatively necessary that the SpW Codecs must be directly connected with the instrument TCP/IP links.
+Note 1: including its package structure, control and data characters and timecodes, especially.
+Note 1: this ensures transferred data liability.
+Note 1: this depends directly of DLR’s specifications, as shown in document RA-01.
+
+Last Updated: 2025-09-02 17:05
+Source: Official Requirements.docx
+            """),
+
+            ("Introduction", """
+QEMULA is an integrated environment and framework designed to emulate the logical processing of the VenSpec-M processing unit. This unit is a core component of the Venus Emissivity Mapper (VEM) spectrometer instrument, which will support the VERITAS and EnVision missions. One of the primary objectives of QEMULA is to provide a virtual testing environment that replicates the behavior of the satellite's embedded hardware responsible for processing spectrometer data.
+
+To achieve accurate emulation of VenSpec-M hardware configurations, the NSEE team conducted an in-depth analysis of QEMU, an open-source software developed by Fabrice Bellard. QEMU enables processor emulation and full system virtualization, making it an ideal foundation for this project. Following extensive comparisons and testing, the team selected QEMU as the core of QEMULA due to its compatibility with the LEON3 processor from Frontgrade Gaisler, its seamless integration with most relevant peripherals, and its adaptability for creating custom components.
+
+This manual provides guidance on the emulation and simulation of the VenSpec-M processing unit, emphasizing the SpaceWire communication protocol. It outlines the software components and digital infrastructure required to meet the testing specifications, as detailed in the QEMULA Official Requirements document.
+
+To meet the requirements of the first delivery, the user can interact with QEMULA through the following system TCP/IP interfaces:
+
+Control Interface: A layer and set of frameworks responsible for managing and supervising the general operation of the simulations carried out by the QEMU emulator running inside of QEMULA. Also, this interface enables debugging capabilities when the emulation is running, through a GDB Server provided directly by QEMU.  This interface has only 1 TCP/IP link and its own control protocol, which will be better described later in this document.
+
+Instrument Interface: Responsible for enabling communication between QEMULA’s user and the emulated instrument itself. Because the main emulated system interfaces are, essentially, SpaceWire (SpW) links, this interface aims to emulate their behaviour, providing several TCP/IP links that replicate the instruments real SpW interfaces.
+
+Debug Interface: A module designed to monitor and address errors or failures during the execution and testing of software within QEMULA. This interface enables users to track performance issues, bugs, and unexpected behaviors, allowing for the analysis of both hardware and software operations to pinpoint the source and nature of errors. The connection is primarily managed by a GDB server within QEMULA, which can be externalized or kept internal during emulation.
+
+The following items in this document will detail the use and preparation of the environment to meet the requirements of the first release of the project, with detailed instructions on how to operate the delivered system.
+
+Last Updated: 2025-09-02 17:05
+Source: QEMULA_User_Manual.docx
+            """),
+
+            ("Processor:", """
+64-bit processor (x86_64 or ARM) with at least two nuclei available.
+
+Hardware virtualization support (Intel VT-x or AMD-V) is recommended for optimized performance but not strictly necessary.
+
+Last Updated: 2025-09-02 17:05
+Source: QEMULA_User_Manual.docx
+            """),
+
+            ("Installation", """
+To run the application, the user only needs to have the main Docker components (Engine, Compose, and Build) or Docker Desktop installed. The following sections will comprehend instructive links and pages on how to install Docker in different operational systems.
+
+Last Updated: 2025-09-02 17:05
+Source: QEMULA_User_Manual.docx
+            """),
+
+            ("To finish, the user must only enable Docker:", """
+When successfully installed, the user could see the Docker Desktop icon available (if the system has a graphical interface), as seen in Figure 1.
+
+For more questions on how to install Docker Desktop on Ubuntu/Debian, please visit the Docker Manuals on this link.
+
+Last Updated: 2025-09-02 17:05
+Source: QEMULA_User_Manual.docx
+            """),
+
+            ("3.2.    For other Linux distributions (Red Hat Enterprise and others)", """
+In a Linux environment, the user needs to follow the instructions on how to install Docker Desktop, following the instructions available on this link.
+
+It is recommended to install Docker Desktop due to its compatibility and stability. However, if preferred, users can opt to install Docker Engine, Docker Compose, and Docker Build separately by following the instructions provided at this link.
+
+Last Updated: 2025-09-02 17:05
+Source: QEMULA_User_Manual.docx
+            """),
+
+            ("3.3.    For Windows (x86 and ARM)", """
+In a Windows environment, the user needs to follow the instructions on how to install Docker Desktop, following the instructions available on this link.
+
+Last Updated: 2025-09-02 17:05
+Source: QEMULA_User_Manual.docx
+            """),
+
+            ("Configuration and Initialization", """
+To set up QEMULA, the user must first download the latest release available in the NSEE repository via the provided link.
+
+Initialization involves running two scripts available in the downloaded release directory. First, execute the configure_qemula script to load QEMULA's image and prepare the environment. Then, execute the start_qemula script to launch QEMULA Docker container. Finally, execute the stop_qemula script to stop QEMULA, when convenient. Note that all scripts require Docker Desktop (or Docker Engine) to be running beforehand. Also, no additional configuration is necessary for running QEMULA when the system’s image is already loaded, so configure_qemula script can only be executed one time, while start_qemula and stop_qemula can be executed multiple times.
+
+For Windows users, the .bat scripts should be executed, which are located on the /Windows/ directory. Linux users should run the corresponding .sh scripts, which are located on the /Linux_Unix/ directory. Both versions perform the same functions, tailored to their respective operating systems.
+
+PS: For Linux environments, if the scripts couldn’t be executed, it may be necessary to execute the following commands:
+
+After that, the system should be initialized correctly. Then, the user needs to connect to QEMULA’s control link to send requisitions and receive answers, connecting to port 4322 of localhost.
+
+When needed, the user should have the capability to connect to QEMULA’s instrument link and debug link:
+
+PS: For debugging purposes, it is important that the code to be tested in QEMULA’s environment be compiled with a -g flag, preferably without any optimizations enabled.
+
+Last Updated: 2025-09-02 17:05
+Source: QEMULA_User_Manual.docx
+            """),
+
+            ("QEMULA’s Control Interface Usage", """
+In this topic, some steps will be outlined so that the user or system can arbitrarily command the behavior of QEMULA through its defined control interface, as well as manage the codes to be tested and the emulation itself.
+
+Initially, the user must connect to the QEMULA system through the control interface, which is open via a TCP/IP server at IP localhost:4322.
+
+Once the connection is successfully established, the user or system can then send requisitions for QEMULA to execute predetermined actions. These requisitions involve answers from QEMULA, both defined through a standardized protocol (see QEMULA’s Official Requirements for more information).
+
+It is important to note that the QEMULA system operates in two different states: configuration (CONFIG) and execution (RUN). Therefore, it is the user's responsibility to configure the emulation parameters and related settings during the CONFIG state of the machine, to begin the emulation itself and transition it to RUN mode.
+
+Essentially, every requisition will take the form described in Figure 2 below.
+
+Thus, it is up to the user to determine the COMMAND_ID to be used, which is an arbitrary and unique value specific to each requisition sent. The other fields will be elaborated on in the future. The general format of an answer, the response packet from QEMULA, can be seen below in Figure 3.
+
+Each answer packet received by the user contains the same ANSWER_ID that matches the COMMAND_ID of the request that generated the answer. This allows the user to associate the received answer with a previously sent request. The other package fields will also be elaborated on in the future.
+
+In this way, the fields particular to each type of requisition supported by the system can be viewed in the Table 1 below.
+
+Table 1 – Requisitions packages supported and their respective fields.
+
+Source: the authors.
+
+PS: the commands marked in red are not implemented in this first version, being reserved for future improvements.
+
+In this way, the user will be able to send commands that configure the emulation and start the emulation in the CONFIG state using the “Start Emulation” requisition, as well as commands that manage and terminate the emulation, using the “Quit Emulation” in the RUN state, generalizing the behavior of the machine.
+
+PS: It is imperative to mention that the system can automatically transition from the RUN state to the CONFIG state if the injected .ELF code completes its execution. Similarly, as previously mentioned, this transition can also occur artificially if the user submits a 'Quit Emulation' request.
+
+Complementing the table above, it is also necessary to display the fields of the answer packets according to their originating requisition. The BODY_CONTENT field of each generated answer is shown in Table 2 below.
+
+Table 2 – Answer packages supported and their respective fields.
+
+Source: the authors.
+
+With respect to the ANSWER_STATUS field in each answer, its values are detailed in Table 3, reflecting whether any errors were encountered by the system during the processing of the originating request.
+
+Table 3 – Relation between the ANSWER_STATUS values and its execution status.
+
+Source: the authors.
+
+In this way, the user will be able to send commands that configure the emulation and start it in the CONFIG state, as well as commands that manage and terminate it in the RUN state, generalizing the behavior of the machine.
+
+For the RUN state, it is possible to visualize that the user can send also send GDB debug commands to QEMULA’s GDB interface. For that, the user must configure debugging mode in the CONFIG state without enabling the debug interface, transition to the RUN state and, finally, send the Control Interface GDB related requisitions.
+
+It is worth noting that, for both the request and response packets, the 2-byte CRC is determined using the CRC16-CITT algorithm, with an initial hexadecimal value of 0xFFFF.
+
+Last Updated: 2025-09-02 17:05
+Source: QEMULA_User_Manual.docx
+            """),
+
+            ("QEMULA’s Debug Interface Usage", """
+The QEMULA debug interface becomes accessible only after the user enables the debug mode and configures the debug interface in the system's CONFIG state, subsequently transitioning to the RUN mode.
+
+Therefore, the user must connect to the system's TCP/IP debug port, assuming it operates as a standard GDB Server. Once connected, the user can debug the code under test through its completion using the interfaces provided by GDB. It is imperative that the user specifies, via the GDB Server, the code symbols to be debugged. To do so, the user must previously download the BCC binaries provided by Frontgrade Gaisler (available on this link), which include the GDB related ones, and insert them into the system’s PATH, subsequently executing the following commands:
+
+Then, GDB should be able to connect with QEMU’s debugging server, enabling the user to debug the previously injected .ELF code. When the user chooses to artificially stop the emulation through the “Quit Emulation” command, the Debug Link closes automatically.
+
+Last Updated: 2025-09-02 17:05
+Source: QEMULA_User_Manual.docx
+            """),
+
+            ("QEMULA’s Instrument Interface Usage", """
+The QEMULA instrument interface, composed of multiple TCP/IP links, provides direct communication between the user and the emulated SpaceWire communication interfaces of the emulated instrument. The instrument interface not only provides SpaceWire link emulation, but also any communication channel that belongs to the instrument (UART links, for example). The data can be multiplexed or not (TBD) and was formatted to be similar to the real SpaceWire format, allowing artifacts such as EEPs to be injected at any time, or disconnections errors and such. The instrument link is still being developed, due to its need to properly integrate to the low-level simulation and data controller.
+
+Particularly when utilizing the SpaceWire interfaces of the emulated system, communication is established as illustrated in Figure 4 below. Ideally, each atomic unit of communication—comprising N-Chars, Timecodes, Tokens, among others—is encapsulated within a 16-bit TCP/IP packet. Of these 16 bits, 8 are allocated for defining the packet's identifier, while the remaining 8 bits carry the data payload. Within the identifier field, 4 bits are reserved to indicate the source or destination of the TCP/IP packet, and the remaining 4 bits specify its category (e.g., N-Char, Timecode, Token, Error, etc.).
+
+Figure 4 – General structure of a QEMULA’ s SpaceWire over TCP/IP atomic package.
+
+Source: the authors.
+
+Like the debug interface, the user can connect to the instrument ports at any point while the system is in its RUN state. Also, the instrument interface is automatically closed if the user artificially terminates the emulation via the 'Quit Emulation' command or if the inserted code reaches the end of its execution.
+
+Last Updated: 2025-09-02 17:05
+Source: QEMULA_User_Manual.docx
+            """),
+
+            ("QEMULA’s Basic Tutorial with Provided Testing Code", """
+To provide an initial testing platform for the delivered system, a Python script named QEMULAs_Testing_Code.py was developed, which is available on QEMULA’s release. This script establishes a connection with the QEMULA system's control link, enabling the exchange of requests and responses.
+
+This section, therefore, presents a straightforward tutorial for initializing QEMULA, using the developed testing code as a foundation for system control.
+
+Initially, the user must configure the QEMULA runtime environment using the configure_qemula script while running Docker Desktop or Docker Engine. Subsequently, the start_qemula script should be executed to launch the system. As mentioned previously, Both scripts must be used with attention to the operational system: .bat scripts for Windows and .sh scripts for Linux/Unix.
+
+Once the system is running, the user must execute the QEMULAs_Testing_Code.py script using the Python3 interpreter available on the system. If done successfully, the user must visualize the screen as seen in Figure 4 below, representing the code’s main menu:
+
+Thus, upon initialization, the script connects to the QEMULA control link, enabling the transmission of the commands listed in its menu. Each command sent elicits a response from the system, which is displayed to the user in a manner similar to that shown in Figure 5, as exemplified by the execution of a “Verify State” command.
+
+As previously described in this manual, only specific commands can be accepted by QEMULA in certain operational states. Therefore, users must pay attention to the command groupings detailed in the menu:
+
+General Commands: These can be sent in any QEMULA state.
+
+CONFIG Commands: These must be sent only while QEMULA is in the CONFIG state. To verify the system's state, the 'Verify State' command can be used.
+
+RUN Commands: These must be sent only while QEMULA is in the RUN state. To verify the system's state, the 'Verify State' command can be used.
+
+Finally, in a typical system execution, the following commands are recommended to be executed in this order: Inject .ELF, Inject AHBROM, Config RAM, Config Debug, Set OS ABI for Debug, and Start Emulation. Afterward, the QEMU emulated system will be initialized, enabling the execution of commands related to the RUN state of QEMULA, according to the user's needs. When necessary, the user may send the Quit Emulation command to end the QEMU emulation and return to the CONFIG state of the system.
+
+Last Updated: 2025-09-02 17:05
+Source: QEMULA_User_Manual.docx
+            """)
+        ]
+        
+        for title, content in help_items:
+            accordion_item = AccordionItem(title, content)
+            self.accordion_items.append(accordion_item)  # Armazenar referência
+            layout.addWidget(accordion_item)
+        
+        return group
+    
+    def expand_all_accordions(self):
+        """Expande todos os accordion items"""
+        for accordion in self.accordion_items:
+            if not accordion.is_expanded:
+                accordion.toggle_content()
+    
+    def collapse_all_accordions(self):
+        """Colapsa todos os accordion items"""
+        for accordion in self.accordion_items:
+            if accordion.is_expanded:
+                accordion.toggle_content()
+    
+    def apply_styles(self):
+        self.setStyleSheet("""
+            QMainWindow {
+                background-color: #f8f9fa;
+            }
+            QFrame {
+                background-color: #ffffff;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+            }
+            QGroupBox {
+                font-weight: bold;
+                border: 2px solid #cccccc;
+                border-radius: 8px;
+                margin-top: 1ex;
+                padding-top: 10px;
+            }
+            QGroupBox::title {
+                subcontrol-origin: margin;
+                left: 10px;
+                padding: 0 5px 0 5px;
+            }
+        """)
+
+def main():
+    app = QApplication(sys.argv)
+    
+    # Configurar tema
+    app.setStyle('Fusion')
+    
+    window = QemulaHelpApp()
+    window.show()
+    
+    sys.exit(app.exec())
+
+if __name__ == "__main__":
+    main()
