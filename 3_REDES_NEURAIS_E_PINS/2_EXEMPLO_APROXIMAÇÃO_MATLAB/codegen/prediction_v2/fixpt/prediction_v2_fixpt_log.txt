@@ -1,4 +1,0 @@
-
-Warnings: 
-
-File: C:\ex_PINN_Matlab\custom_fcn.m, line : 7, column : 25. Function 'exp' not supported for fixed-point conversion.

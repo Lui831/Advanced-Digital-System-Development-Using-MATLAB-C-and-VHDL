@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Fixed-Point Report for pinn_predict_hdl</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+	body { font-family: monospace; }
+	h2 { font-family: Arial, Helvetica, sans-serif; color: #990000; margin-top: 50px; }
+	table,th,td { border: 1px solid black; }
+	table { margin-top: 30px; }
+	th { align: center; font-weight: bold; }
+	tr.h { background-color: #99CCFF; }
+	tr.a { background-color: #EEEEFF; }
+	tr.b { background-color: #FFFFFF; }
+	tr.c { background-color: #FFA500; }
+	tr.a td, tr.b td { border-style: none; }
+	td.left { text-align: left; }
+	td.right { text-align: right; }
+	td.center { text-align: center; }
+	td.bold { font-weight: bold; }
+	pre { padding: 0px; margin: 0px; }
+	span { font-style: italic; }
+	.code, .code tr, .code th, .code td { border: none; border-collapse: collapse; }
+	.padd { padding-left: 5px; }
+	td.cov, th.cov { width: 50px; height: 20px; text-align: center; font-weight: bold; border-right: 2px solid black; cell-spacing: 0px; }
+	td.cov { vertical-align: top; }
+	td.black { color: #000000; font-weight: bold; padding-top: 4px; }
+	td.white { color: #FFFFFF; font-weight: bold; padding-top: 4px; }
+	.code th { font-weight: bold; border-bottom: 2px solid black; }
+</style>
+</head>
+<body>
+<h3>Generated on  2026-02-01 17:04:51</h3>
+<p>The following table shows fixed point instrumentation results</p>
+<h2>Fixed-Point Report <span>pinn_forward_scalar<span></h2>
+<TABLE class="code">
+<TR>
+<TH class="cov padd">Simulation Coverage</TH>
+<TH>Code</TH>
+</TR>
+<TR>
+<TD class="cov white" style="background-color: rgb(5,112,9);">100%</TD>
+<TD class="padd"><pre>function y = pinn_forward_scalar(x, W1, b1, W2, b2, W3, b3, W4, b4)
+%#codegen
+%PINN_FORWARD_SCALAR Forward pass com entrada escalar (amigavel a HDL).
+% Arquitetura esperada: 1-32-32-32-1
+% x: escalar
+
+% Garante escalar
+x = x(1);
+
+% Camada 1
+b1 = b1(:).';
+a1 = tanh(x * W1 + b1);
+
+% Camada 2
+b2 = b2(:).';
+a2 = tanh(a1 * W2 + b2);
+
+% Camada 3
+b3 = b3(:).';
+a3 = tanh(a2 * W3 + b3);
+
+% Saida
+b4 = b4(:).';
+y = a3 * W4 + b4;
+end</pre></TD>
+</TR>
+</TABLE>
+<TABLE><TR class="h"><th>Variable Name</th><th>Type</th><th>Sim Min</th><th>Sim Max</th><th>Static Min</th><th>Static Max</th><th>Whole Number</th><th>ProposedType <BR /> (Best For WL = 14)</th></TR><TR class="a">
+<TD class="left">W1</TD><TD class="left">single 1 x 32 </TD><TD class="right">-0.3092021942138672</TD><TD class="right">0.2890612483024597</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 14)</TD></TR>
+<TR class="b">
+<TD class="left">W2</TD><TD class="left">single 32 x 32 </TD><TD class="right">-0.7193960547447205</TD><TD class="right">0.68503737449646</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 13)</TD></TR>
+<TR class="a">
+<TD class="left">W3</TD><TD class="left">single 32 x 32 </TD><TD class="right">-1.05337393283844</TD><TD class="right">0.8487591743469238</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 12)</TD></TR>
+<TR class="b">
+<TD class="left">W4</TD><TD class="left">single 32 x 1 </TD><TD class="right">-1.99122154712677</TD><TD class="right">1.9826531410217285</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 12)</TD></TR>
+<TR class="a">
+<TD class="left">a1</TD><TD class="left">single 1 x 32 </TD><TD class="right">-1</TD><TD class="right">1</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 12)</TD></TR>
+<TR class="b">
+<TD class="left">a2</TD><TD class="left">single 1 x 32 </TD><TD class="right">-0.9840657114982605</TD><TD class="right">0.9447659850120544</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 13)</TD></TR>
+<TR class="a">
+<TD class="left">a3</TD><TD class="left">single 1 x 32 </TD><TD class="right">-0.9998372197151184</TD><TD class="right">0.9998767971992493</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 13)</TD></TR>
+<TR class="b">
+<TD class="left">b1</TD><TD class="left">single 1 x 32 </TD><TD class="right">-0.24331441521644592</TD><TD class="right">0.2150239795446396</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 15)</TD></TR>
+<TR class="a">
+<TD class="left">b2</TD><TD class="left">single 1 x 32 </TD><TD class="right">-0.0924530178308487</TD><TD class="right">0.1581648588180542</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 15)</TD></TR>
+<TR class="b">
+<TD class="left">b3</TD><TD class="left">single 1 x 32 </TD><TD class="right">-0.23962996900081635</TD><TD class="right">0.09295091778039932</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 15)</TD></TR>
+<TR class="a">
+<TD class="left">b4</TD><TD class="left">single</TD><TD class="right">1.3274058103561401</TD><TD class="right">1.3274058103561401</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(0, 14, 13)</TD></TR>
+<TR class="b">
+<TD class="left">x</TD><TD class="left">double</TD><TD class="right">0</TD><TD class="right">100</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 7, 0)</TD></TR>
+<TR class="a">
+<TD class="left">y</TD><TD class="left">single</TD><TD class="right">29.99834632873535</TD><TD class="right">59.7760009765625</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(0, 14, 8)</TD></TR>
+</TABLE>
+
+<h2>Fixed-Point Report <span>pinn_predict_hdl<span></h2>
+<TABLE class="code">
+<TR>
+<TH class="cov padd">Simulation Coverage</TH>
+<TH>Code</TH>
+</TR>
+<TR>
+<TD class="cov white" style="background-color: rgb(5,112,9);">100%</TD>
+<TD class="padd"><pre>function y = pinn_predict_hdl(x)
+%#codegen
+%PINN_PREDICT_HDL Wrapper para uso com HDL Coder (pesos numericos fixos).
+
+persistent W1 b1 W2 b2 W3 b3 W4 b4
+</pre></TD>
+</TR>
+<TR>
+<TD class="cov black" style="background-color: rgb(255,160,118);">Once</TD>
+<TD class="padd"><pre>if isempty(W1)
+    s = coder.load('pinn_weights.mat', 'W1','b1','W2','b2','W3','b3','W4','b4');
+    W1 = s.W1; b1 = s.b1;
+    W2 = s.W2; b2 = s.b2;
+    W3 = s.W3; b3 = s.b3;
+    W4 = s.W4; b4 = s.b4;
+end</pre></TD>
+</TR>
+<TR>
+<TD class="cov white" style="background-color: rgb(5,112,9);">100%</TD>
+<TD class="padd"><pre>
+
+y = pinn_forward_scalar(x, W1, b1, W2, b2, W3, b3, W4, b4);
+end</pre></TD>
+</TR>
+</TABLE>
+<TABLE><TR class="h"><th>Variable Name</th><th>Type</th><th>Sim Min</th><th>Sim Max</th><th>Static Min</th><th>Static Max</th><th>Whole Number</th><th>ProposedType <BR /> (Best For WL = 14)</th></TR><TR class="a">
+<TD class="left">W1</TD><TD class="left">single 1 x 32 </TD><TD class="right">-0.3092021942138672</TD><TD class="right">0.2890612483024597</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 14)</TD></TR>
+<TR class="b">
+<TD class="left">W2</TD><TD class="left">single 32 x 32 </TD><TD class="right">-0.7193960547447205</TD><TD class="right">0.68503737449646</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 13)</TD></TR>
+<TR class="a">
+<TD class="left">W3</TD><TD class="left">single 32 x 32 </TD><TD class="right">-1.05337393283844</TD><TD class="right">0.8487591743469238</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 12)</TD></TR>
+<TR class="b">
+<TD class="left">W4</TD><TD class="left">single 32 x 1 </TD><TD class="right">-1.99122154712677</TD><TD class="right">1.9826531410217285</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 12)</TD></TR>
+<TR class="a">
+<TD class="left">b1</TD><TD class="left">single 1 x 32 </TD><TD class="right">-0.24331441521644592</TD><TD class="right">0.2150239795446396</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 15)</TD></TR>
+<TR class="b">
+<TD class="left">b2</TD><TD class="left">single 1 x 32 </TD><TD class="right">-0.0924530178308487</TD><TD class="right">0.1581648588180542</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 15)</TD></TR>
+<TR class="a">
+<TD class="left">b3</TD><TD class="left">single 1 x 32 </TD><TD class="right">-0.23962996900081635</TD><TD class="right">0.09295091778039932</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 15)</TD></TR>
+<TR class="b">
+<TD class="left">b4</TD><TD class="left">single</TD><TD class="right">1.3274058103561401</TD><TD class="right">1.3274058103561401</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(0, 14, 13)</TD></TR>
+<TR class="a">
+<TD class="left">s</TD><TD class="left">struct</TD><TD class="right"></TD><TD class="right"></TD><TD class="right"></TD><TD class="right"></TD><TD class="left"></TD><TD class="left"></TD></TR>
+<TR class="a">
+<TD class="left">s.W1</TD><TD class="left">single 1 x 32 </TD><TD class="right">-0.3092021942138672</TD><TD class="right">0.2890612483024597</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 14)</TD></TR>
+<TR class="a">
+<TD class="left">s.b1</TD><TD class="left">single 1 x 32 </TD><TD class="right">-0.24331441521644592</TD><TD class="right">0.2150239795446396</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 15)</TD></TR>
+<TR class="a">
+<TD class="left">s.W2</TD><TD class="left">single 32 x 32 </TD><TD class="right">-0.7193960547447205</TD><TD class="right">0.68503737449646</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 13)</TD></TR>
+<TR class="a">
+<TD class="left">s.b2</TD><TD class="left">single 1 x 32 </TD><TD class="right">-0.0924530178308487</TD><TD class="right">0.1581648588180542</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 15)</TD></TR>
+<TR class="a">
+<TD class="left">s.W3</TD><TD class="left">single 32 x 32 </TD><TD class="right">-1.05337393283844</TD><TD class="right">0.8487591743469238</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 12)</TD></TR>
+<TR class="a">
+<TD class="left">s.b3</TD><TD class="left">single 1 x 32 </TD><TD class="right">-0.23962996900081635</TD><TD class="right">0.09295091778039932</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 15)</TD></TR>
+<TR class="a">
+<TD class="left">s.W4</TD><TD class="left">single 32 x 1 </TD><TD class="right">-1.99122154712677</TD><TD class="right">1.9826531410217285</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 14, 12)</TD></TR>
+<TR class="a">
+<TD class="left">s.b4</TD><TD class="left">single</TD><TD class="right">1.3274058103561401</TD><TD class="right">1.3274058103561401</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(0, 14, 13)</TD></TR>
+<TR class="b">
+<TD class="left">x</TD><TD class="left">double</TD><TD class="right">0</TD><TD class="right">100</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 7, 0)</TD></TR>
+<TR class="a">
+<TD class="left">y</TD><TD class="left">single</TD><TD class="right">29.99834632873535</TD><TD class="right">59.7760009765625</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(0, 14, 8)</TD></TR>
+</TABLE>
+
+</body>
+</html>

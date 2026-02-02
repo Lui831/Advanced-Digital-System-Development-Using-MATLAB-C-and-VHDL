@@ -1,0 +1,6 @@
+
+Warnings: 
+
+File: C:\Users\Luiz\Documents\GitHub\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\3_REDES_NEURAIS_E_PINS\4_EXEMPLO_PINN_EM_HDL\pinn_forward_scalar.m, line : 12, column : 6. Function 'tanh' not supported for fixed-point conversion.
+File: C:\Users\Luiz\Documents\GitHub\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\3_REDES_NEURAIS_E_PINS\4_EXEMPLO_PINN_EM_HDL\pinn_forward_scalar.m, line : 16, column : 6. Function 'tanh' not supported for fixed-point conversion.
+File: C:\Users\Luiz\Documents\GitHub\Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL\3_REDES_NEURAIS_E_PINS\4_EXEMPLO_PINN_EM_HDL\pinn_forward_scalar.m, line : 20, column : 6. Function 'tanh' not supported for fixed-point conversion.

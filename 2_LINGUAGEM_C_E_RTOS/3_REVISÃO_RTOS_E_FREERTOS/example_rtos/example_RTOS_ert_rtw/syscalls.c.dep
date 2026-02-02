@@ -1,2 +1,0 @@
-syscalls.c.o: \
- C:/Users/thiag/OneDrive/documentos/MATLAB/example_rtos/STM32CubeIDE/Application/User/Core/syscalls.c

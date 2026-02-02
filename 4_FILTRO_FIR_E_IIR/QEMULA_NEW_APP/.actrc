@@ -1,8 +1,0 @@
-# Act configuration file
-# Use ubuntu-latest image for self-hosted runners
--P self-hosted=catthehacker/ubuntu:act-latest
--P ubuntu-latest=catthehacker/ubuntu:act-latest
-
-# Secrets (você pode criar um arquivo .secrets se quiser)
-# -s DOCKER_USERNAME=seu_usuario
-# -s DOCKER_PASSWORD=sua_senha

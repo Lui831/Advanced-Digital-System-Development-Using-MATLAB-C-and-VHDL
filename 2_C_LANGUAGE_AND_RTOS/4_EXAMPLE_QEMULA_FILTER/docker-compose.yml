@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  qemula:
+    image: docker_raw_codes-qemu:latest
+    ports:
+      - "4322:4322" # Controle do docker/QEMU
+      - "5050:5050" # Instrumento QEMU - SPW
+      - "5151:5151" # Instrumento QEMU - UART
+      - "5054:5054" # Instrumento QEMU - UART
+      - "1234:1234" # Debug QEMU
+    restart: unless-stopped
+
+    command: ./venv/bin/python3 main.py
+
+    deploy:
+      resources:
+        limits:
+          cpus: "2"     # Limita o contêiner a 1 núcleo de CPU
+          memory: "8G"   # Limita o contêiner a 512 MB de memória

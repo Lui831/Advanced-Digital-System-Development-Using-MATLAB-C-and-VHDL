@@ -1,5 +1,0 @@
- --> Moving_Average_pkg
-Moving_Average_sim/Moving Average/nfp_uminus_double --> nfp_uminus_double
-Moving_Average_sim/Moving Average/nfp_gain_pow2_double --> nfp_gain_pow2_double
-Moving_Average_sim/Moving Average/nfp_add_double --> nfp_add_double
-Moving_Average_sim/Moving Average --> Moving_Average

@@ -1,0 +1,318 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/18.1
+Eintegrador
+Z0 w1769088883
+Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z4 dC:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled
+Z5 8C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador.vhd
+Z6 FC:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador.vhd
+l0
+L43
+V_HLLkDoACgLjzK=oQ7P1D1
+!s100 R39bKTJ[dGW5ZV0>`^@`;2
+Z7 OV;C;10.5b;63
+32
+Z8 !s110 1769088892
+!i10b 1
+Z9 !s108 1769088892.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador.vhd|
+Z11 !s107 C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador.vhd|
+!i113 1
+Z12 o-work work -2002 -explicit
+Z13 tExplicit 1 CvgOpt 0
+Artl
+Z14 DEx4 work 14 nfp_add_double 0 22 FV?SI3`g`3>UUz[OJaEFC1
+Z15 DPx4 work 14 integrador_pkg 0 22 ><eUailcjSJNIYWCgWiEc3
+Z16 DEx4 work 14 nfp_mul_double 0 22 <g3k69WEaaQIbVbP0IDKV3
+Z17 DEx4 work 13 integrador_tc 0 22 gSM?NLVjQ3Li>Wjz94J1m1
+R1
+R2
+R3
+Z18 DEx4 work 10 integrador 0 22 _HLLkDoACgLjzK=oQ7P1D1
+l110
+L54
+VzbG[BUCDVcmXcLMb@zKPh0
+!s100 iOZaJX]ol@C_MYF:Q7d]J0
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Pintegrador_pkg
+R1
+R2
+R3
+R0
+R4
+8C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador_pkg.vhd
+FC:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador_pkg.vhd
+l0
+L15
+V><eUailcjSJNIYWCgWiEc3
+!s100 8WElQXI@NgS0?hdl?Io2Q2
+R7
+32
+R8
+!i10b 1
+R9
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador_pkg.vhd|
+!s107 C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador_pkg.vhd|
+!i113 1
+R12
+R13
+Eintegrador_tb
+Z19 w1769088886
+Z20 DPx4 work 17 integrador_tb_pkg 0 22 QO46=LSF_X3IkGL?cAk630
+R15
+Z21 DPx4 ieee 9 fixed_pkg 0 22 6nURH]dUY5@T6S0eLDXJe2
+Z22 DPx4 ieee 17 fixed_generic_pkg 0 22 `=cI_4Mf07Y0RE[dTgE=F2
+Z23 DPx4 ieee 17 fixed_float_types 0 22 JoVc:0L4XeXcaE?c:FVe62
+R1
+Z24 DPx4 ieee 17 float_generic_pkg 0 22 H9F2dgFW`hn13SQYDoo_R2
+Z25 DPx4 ieee 9 float_pkg 0 22 Z81QOO3@T3iYBM^RlCZFZ1
+R3
+R2
+Z26 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
+R4
+Z27 8C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador_tb.vhd
+Z28 FC:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador_tb.vhd
+l0
+L37
+VH<EHk@Cb3bLO5BJR^@85j0
+!s100 [Di[H2Md:?_S[bNL0ALfk3
+R7
+32
+R8
+!i10b 1
+R9
+Z29 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador_tb.vhd|
+Z30 !s107 C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador_tb.vhd|
+!i113 1
+R12
+R13
+Artl
+R18
+R20
+R15
+R21
+R22
+R23
+R1
+R24
+R25
+R3
+R2
+R26
+DEx4 work 13 integrador_tb 0 22 H<EHk@Cb3bLO5BJR^@85j0
+l93
+L41
+VMN0IB?zd0Y]WNd8Ra=a]>1
+!s100 ^j3]Z5;b`Nc7`>KAl<88K0
+R7
+32
+R8
+!i10b 1
+R9
+R29
+R30
+!i113 1
+R12
+R13
+Pintegrador_tb_pkg
+R15
+R21
+Z31 DBx4 ieee 17 fixed_generic_pkg 4 body 22 1OB>@cS:GBkHTK^gK1Nzm1
+R23
+Z32 DBx4 ieee 17 float_generic_pkg 4 body 22 WN9:YIQ]Fc2f32ANi3<g`0
+R25
+R26
+R1
+R2
+R3
+R19
+R4
+Z33 8C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador_tb_pkg.vhd
+Z34 FC:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador_tb_pkg.vhd
+l0
+L22
+VQO46=LSF_X3IkGL?cAk630
+!s100 `lRd2A5>Qj`_b=aATZ]E^0
+R7
+32
+b1
+R8
+!i10b 1
+R9
+Z35 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador_tb_pkg.vhd|
+Z36 !s107 C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador_tb_pkg.vhd|
+!i113 1
+R12
+R13
+Bbody
+R20
+R15
+R21
+R31
+R23
+R32
+R25
+R26
+R1
+R2
+R3
+l0
+L35
+VJ3HWlbk2GokVcD_iFB39d2
+!s100 Pg8N4o5:ce<>Ca9JQbg9Z0
+R7
+32
+R8
+!i10b 1
+R9
+R35
+R36
+!i113 1
+R12
+R13
+Eintegrador_tc
+R0
+R1
+R2
+R3
+R4
+Z37 8C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador_tc.vhd
+Z38 FC:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador_tc.vhd
+l0
+L27
+VgSM?NLVjQ3Li>Wjz94J1m1
+!s100 `P<P49`08ckG5Hd53:<;?1
+R7
+32
+R8
+!i10b 1
+R9
+Z39 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador_tc.vhd|
+Z40 !s107 C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/Integrador_tc.vhd|
+!i113 1
+R12
+R13
+Artl
+R1
+R2
+R3
+R17
+l46
+L37
+VnPkbb_]I^WK1[>AR?L1C?0
+!s100 VOXMa?J@ck2X4KHW80:543
+R7
+32
+R8
+!i10b 1
+R9
+R39
+R40
+!i113 1
+R12
+R13
+Enfp_add_double
+R0
+R15
+R1
+R2
+R3
+R4
+Z41 8C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/nfp_add_double.vhd
+Z42 FC:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/nfp_add_double.vhd
+l0
+L26
+VFV?SI3`g`3>UUz[OJaEFC1
+!s100 0kMBWJlDb99:J<^BGZKT_0
+R7
+32
+R8
+!i10b 1
+R9
+Z43 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/nfp_add_double.vhd|
+Z44 !s107 C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/nfp_add_double.vhd|
+!i113 1
+R12
+R13
+Artl
+R15
+R1
+R2
+R3
+R14
+l714
+L37
+Z45 VjHazW0XFLQQz7MZL0C>Nl3
+Z46 !s100 [OIJloXRE?cfn_TQcoccM2
+R7
+32
+R8
+!i10b 1
+R9
+R43
+R44
+!i113 1
+R12
+R13
+Enfp_mul_double
+R0
+R15
+R1
+R2
+R3
+R4
+Z47 8C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/nfp_mul_double.vhd
+Z48 FC:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/nfp_mul_double.vhd
+l0
+L27
+V<g3k69WEaaQIbVbP0IDKV3
+!s100 B7UQgJZc7XeYLGIQc==bi1
+R7
+32
+R8
+!i10b 1
+R9
+Z49 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/nfp_mul_double.vhd|
+Z50 !s107 C:/Users/Luiz/Documents/GitHub/Advanced-Digital-System-Development-Using-MATLAB-C-and-VHDL/1_LINGUAGENS_HDL_E_VHDL/4_EXEMPLO_INTEGRADOR_HDL_CODER/hdl_prj/hdlsrc/untitled/nfp_mul_double.vhd|
+!i113 1
+R12
+R13
+Artl
+R15
+R1
+R2
+R3
+R16
+l204
+L38
+V;AfEl82@>83XWH7h:ZDYT2
+!s100 mHS6fb0W75W0mPLaCUcz;0
+R7
+32
+R8
+!i10b 1
+R9
+R49
+R50
+!i113 1
+R12
+R13
