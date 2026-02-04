@@ -53,7 +53,7 @@ class Protocol_Test:
     # Constructor - Initializes the log file and reads the .csv file
     def __init__(self):
 
-        # Inicializa a definição do dicionário de funções
+        # Initialize the function map
         self.test_functions = {
 
             1: self.__send_verify_state_command,
@@ -110,15 +110,15 @@ class Protocol_Test:
         while True:
             try:
                 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                client.connect(('127.0.0.1', 12345))  # IP e porta do servidor
-                print("[CONECTADO] Conectado ao servidor.")
+                client.connect(('127.0.0.1', 12345))  # Server IP and port
+                print("[CONNECTED] Connected to the server.")
                 
                 while True:
                     response = client.recv(1024).decode('utf-8')
-                    print(f"[SERVIDOR] {response}")
+                    print(f"[SERVER] {response}")
             
             except (ConnectionRefusedError, OSError):
-                print("[ERRO] Conexão perdida. Tentando reconectar em 5 segundos...")
+                print("[ERROR] Connection lost. Trying to reconnect in 5 seconds...")
                 time.sleep(5)
                 continue
 
@@ -219,14 +219,14 @@ class Protocol_Test:
     # Function that sends the verify state command to the server
     def __send_verify_state_command(self):
 
-        # Cria o comando a ser enviado
+        # Builds the command to be sent
         command = self.__format_command(self.command_id, 0x0, 0x0, b"")
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -238,7 +238,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
         
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -251,7 +251,7 @@ class Protocol_Test:
         print(f"Response Body Content: {response['response_body_content']}")
         self.log_file.write(f"Response Body Content: {response['response_body_content']}\n")
 
-        # Interpreta particularmente a resposta do comando
+        # Interprets this command's response
         if response["response_body_content"] == 0:
             print("Response Interpretation: The machine is in CONFIG state.")
             self.log_file.write("Response Interpretation: The machine is paused.\n")
@@ -264,21 +264,21 @@ class Protocol_Test:
     # Function that sends the inject .ELF command to the server
     def __send_inject_elf_command(self):
 
-        # Pergunta o nome do arquivo .ELF
+        # Prompts for the .ELF file name
         elf_file = input("Enter the name of the .ELF file: ")
 
-        # Abre o arquivo .ELF
+        # Opens the .ELF file
         with open(elf_file, "rb") as f:
             elf_content = f.read()
 
-        # Cria o comando a ser enviado
+        # Builds the command to be sent
         comando = self.__format_command(self.command_id, 0x0, 0x1, elf_content)
         self.command_id += 1
 
-        # Envia o comando para o servidor
+        # Sends the command to the server
         self.client_socket.send(comando)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -287,7 +287,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -304,21 +304,21 @@ class Protocol_Test:
     # Function that sends the inject ahbrom file command to the server
     def __send_inject_ahbrom_command(self):
 
-        # Pergunta o nome do arquivo .ELF
+        # Prompts for the .ELF file name
         ahbrom_file = input("Enter the name of the AHBROM file: ")
 
-        # Abre o arquivo .ELF
+        # Opens the .ELF file
         with open(ahbrom_file, "rb") as f:
             ahbrom_content = f.read()
 
-        # Cria o comando a ser enviado
+        # Builds the command to be sent
         command = self.__format_command(self.command_id, 0x0, 0x2, ahbrom_content)
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -327,7 +327,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -344,21 +344,21 @@ class Protocol_Test:
     #Function that sends the config to the server
     def __send_inject_config_command(self):
 
-        # Pergunta o nome do arquivo config
+        # Prompts for the config file name
         elf_file = input("Enter the name of the .cfg file: ")
 
-        # Abre o arquivo .ELF
+        # Opens the .ELF file
         with open(elf_file, "rb") as f:
             elf_content = f.read()
 
-        # Cria o comando a ser enviado
+        # Builds the command to be sent
         comando = self.__format_command(self.command_id, 0x0, 0x3, elf_content)
         self.command_id += 1
 
-        # Envia o comando para o servidor
+        # Sends the command to the server
         self.client_socket.send(comando)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -367,7 +367,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -384,17 +384,17 @@ class Protocol_Test:
     # Function that sends the config ram command to the server
     def __send_config_ram_command(self):
 
-        # Pergunta o tamanho da RAM
+        # Prompts for the RAM size
         ram_size = int(input("Enter the size of the RAM: "))
 
-        # Cria o comando a ser enviado
+        # Builds the command to be sent
         command = self.__format_command(self.command_id, 0x0, 0x3, ram_size.to_bytes(4, byteorder="big"))
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -403,7 +403,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -420,17 +420,17 @@ class Protocol_Test:
     # Function that sends the config debug command to the server
     def __send_config_debug_command(self):
 
-        # Pergunta se vai querer o modo de debug ou não
+        # Prompts whether to use debug mode
         debug_mode = int(input("Enter 0 for no debug mode | 1 for debug mode with discrete interface | 2 for debug mode with implicit interface: "))
 
-        # Cria o comando a ser enviado
+        # Builds the command to be sent
         command = self.__format_command(self.command_id, 0x0, 0x4, debug_mode.to_bytes(1, byteorder="big"))
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -439,7 +439,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -456,20 +456,20 @@ class Protocol_Test:
     # Function that sedns the set OS ABI for debug command to the server
     def __send_set_os_abi_for_debug_command(self):
 
-        # Pergunta qual o OS ABI a ser utilizado
+        # Prompts for the OS ABI to use
         os_abi = str(input("Enter the OS ABI to be used by GDB: "))
 
         # Codifica o OS ABI
         os_abi = os_abi.encode('utf-8')
 
-        # Cria o comando a ser enviado
+        # Builds the command to be sent
         command = self.__format_command(self.command_id, 0x0, 0x5, os_abi)
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Deformata a resposta
@@ -478,7 +478,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -495,14 +495,14 @@ class Protocol_Test:
     # Function that sends the start emulation command to the server
     def __send_start_emulation_command(self):
 
-        # Formata o comando a ser enviado
+        # Formats the command to be sent
         command = self.__format_command(self.command_id, 0x0, 0x6, b"")
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -511,7 +511,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -528,14 +528,14 @@ class Protocol_Test:
     # Function that sends the pause machine command to the server
     def __send_pause_machine_command(self):
 
-        # Formata o comando
+        # Formats the command
         command = self.__format_command(self.command_id, 0x1, 0x7, b"")
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -544,7 +544,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -561,14 +561,14 @@ class Protocol_Test:
     # Function that sends the unpause machine command to the server
     def __send_unpause_machine_command(self):
 
-        # Formata o comando
+        # Formats the command
         command = self.__format_command(self.command_id, 0x1, 0x8, b"")
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -577,7 +577,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -594,20 +594,20 @@ class Protocol_Test:
     # Function that sends the dump memory command to the server
     def __send_dump_memory_command(self):
 
-        # Pergunta o endereço de memória
+        # Prompts for the memory address
         memory_address = int(input("Enter the memory address: "))
 
-        # Pergunta o tamanho da memória
+        # Prompts for the memory size
         memory_size = int(input("Enter the memory size: "))
 
-        # Formata o comando
+        # Formats the command
         command = self.__format_command(self.command_id, 0x1, 0x9, memory_address.to_bytes(4, byteorder="big") + memory_size.to_bytes(4, byteorder="big"))
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -616,7 +616,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -633,14 +633,14 @@ class Protocol_Test:
     # Function that sends the quit emulation command to the server
     def __send_quit_emulation_command(self):
 
-        # Formata o comando
+        # Formats the command
         command = self.__format_command(self.command_id, 0x1, 0x0D, b"")
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -649,7 +649,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -666,17 +666,17 @@ class Protocol_Test:
     # Function that sends the configure breakpoint command to the server
     def __send_configure_breakpoint_command(self):
 
-        # Pergunta a linha que será aplicado o breakpoint
+        # Prompts for the line where the breakpoint will be set
         breakpoint = int(input("Enter the line to apply a breakpoint: ")).to_bytes(4, byteorder='big')
 
-        # Formata o comando
+        # Formats the command
         command = self.__format_command(self.command_id, 0x1, 0x0E, breakpoint)
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -685,7 +685,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -705,17 +705,17 @@ class Protocol_Test:
     # Function that sends the delete breakpoint command to the server
     def __send_delete_breakpoint_command(self):
 
-        # Pergunta o breakpoint a ser deletado para o usuário
+        # Prompts for the breakpoint to delete
         breakpoint = int(input("Enter the breakpoint line to be deleted: "))
 
-        # Formata o comando
+        # Formats the command
         command = self.__format_command(self.command_id, 0x1, 0x0F, breakpoint.to_bytes(4, byteorder='big'))
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -724,7 +724,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -744,14 +744,14 @@ class Protocol_Test:
     # Function that sends the continue emulation command to the server
     def __send_continue_emulation_command(self):
 
-        # Formata o comando
+        # Formats the command
         command = self.__format_command(self.command_id, 0x1, 0x10, b"")
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -760,7 +760,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -780,14 +780,14 @@ class Protocol_Test:
     # Function that sends the finish execution command
     def __send_finish_execution_command(self):
 
-        # Formata o comando
+        # Formats the command
         command = self.__format_command(self.command_id, 0x1, 0x11, b"")
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -796,7 +796,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -816,15 +816,15 @@ class Protocol_Test:
     # Function that sends the next line command
     def __send_next_line_command(self):
 
-        # Formata o comando
+        # Formats the command
         command = self.__format_command(self.command_id, 0x1, 0x12, b"")
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
 
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -833,7 +833,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -853,14 +853,14 @@ class Protocol_Test:
     # Function that sends the step into command
     def __send_step_into_command(self):
 
-        # Formata o comando
+        # Formats the command
         command = self.__format_command(self.command_id, 0x1, 0x13, b"")
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -869,7 +869,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -889,20 +889,20 @@ class Protocol_Test:
     # Function that sends the verify variable command
     def __send_verify_variable_command(self):
 
-        # Pergunta o nome da variável
+        # Prompts for the variable name
         variable_name = str(input("Enter the name of the variable: "))
 
-        # Codifica o nome da variável
+        # Encodes the variable name
         variable_name = (variable_name).encode('utf-8')
 
-        # Cria o comando a ser enviado
+        # Builds the command to be sent
         command = self.__format_command(self.command_id, 0x1, 0x14, variable_name)
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -911,7 +911,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -931,20 +931,20 @@ class Protocol_Test:
     # Function that sends the GDB command to the server
     def __send_gdb_command(self):
 
-        # Pergunta o comando GDB
+        # Prompts for the GDB command
         gdb_command = str(input("Enter the GDB command: "))
 
-        # Codifica o comando GDB
+        # Encodes the GDB command
         gdb_command = gdb_command.encode('utf-8')
     
-        # Formata o comando
+        # Formats the command
         command = self.__format_command(self.command_id, 0x1, 0x15, gdb_command)
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -953,7 +953,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -974,19 +974,19 @@ class Protocol_Test:
     # Function that sends an arbitrary command to the server
     def __send_random_command(self):
 
-        # Pergunta o comando a ser enviado
+        # Prompts for the command to send
         arbitrary_command = input("Enter the arbitrary command: ")
 
-        # Codifica o comando
+        # Encodes the command
         arbitrary_command = self.__process_bytes(arbitrary_command)
         
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         print("Command sent: ", arbitrary_command)
         self.client_socket.send(arbitrary_command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -995,7 +995,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -1011,17 +1011,17 @@ class Protocol_Test:
 
     # Function that sends the read I/O command to the server
     def __send_read_io_command(self):
-        # Pergunta o endereço de I/O
+        # Prompts for the I/O address
         io_address = int(input("Enter the I/O address: "))
 
-        # Formata o comando
+        # Formats the command
         command = self.__format_command(self.command_id, 0x1, 0x0B, io_address.to_bytes(4, byteorder="big"))
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -1030,7 +1030,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -1046,21 +1046,21 @@ class Protocol_Test:
 
     # Function that sends the write I/O command to the server
     def __send_write_io_command(self):
-        # Pergunta o endereço de I/O
+        # Prompts for the I/O address
         io_address = int(input("Enter the I/O address: "))
 
-        # Pergunta o valor a ser escrito
+        # Prompts for the value to write
         io_value = int(input("Enter the value to be written: "))
 
-        # Formata o comando
+        # Formats the command
         command_body = io_address.to_bytes(4, byteorder="big") + io_value.to_bytes(4, byteorder="big")
         command = self.__format_command(self.command_id, 0x1, 0x0C, command_body)
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -1069,7 +1069,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 
@@ -1084,25 +1084,25 @@ class Protocol_Test:
 
     def __hex_to_bytes(self, hex_string: str) -> bytes:
         """
-        Converte string no formato 'AA BB CC 01 02' para bytes reais.
+        Converts a string like 'AA BB CC 01 02' into raw bytes.
         """
-        hex_string = hex_string.replace(" ", "")  # remove espaços
+        hex_string = hex_string.replace(" ", "")  # remove spaces
         return bytes.fromhex(hex_string)
 
     # Function that sends an err inject command to the server
     def __send_err_inject_command(self):
 
-        # Pergunta o endereço de I/O
+        # Prompts for the I/O address
         err_inject_payload = input("Enter the err inject payload command: ")
 
-        # Formata o comando
+        # Formats the command
         command = self.__format_command(self.command_id, 0x1, 0x16, self.__hex_to_bytes(err_inject_payload))
         self.command_id += 1
 
-        # Envia o comando
+        # Sends the command
         self.client_socket.send(command)
 
-        # Recebe a resposta
+        # Receives the response
         response = self.client_socket.recv(1024)
 
         # Processa a resposta
@@ -1111,7 +1111,7 @@ class Protocol_Test:
         # Interpreta o status
         response["response_status"] = self.__interpret_status(response["response_status"])
 
-        # Printa o resultado
+        # Prints the result
         print(f"Response ID: {response['response_id']}")
         self.log_file.write(f"Response ID: {response['response_id']}\n")
 

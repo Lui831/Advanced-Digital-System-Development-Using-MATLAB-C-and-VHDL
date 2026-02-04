@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Le dados chirp do Excel, toca o audio do sinal de entrada, envia cada amostra
-via TCP (value + '!'), coleta o valor filtrado e toca o audio de saida.
+Reads chirp data from Excel, plays the input signal audio, sends each sample
+via TCP (value + '!'), collects the filtered value, and plays the output audio.
 """
 
 from __future__ import annotations
@@ -29,7 +29,9 @@ try:
 except Exception:
     winsound = None
 
-FILTER_RE = re.compile(r"DEBUG: Valor filtrado: ([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)")
+FILTER_RE = re.compile(
+    r"DEBUG: (?:Valor filtrado|Filtered value): ([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)"
+)
 INIT_PORT = 5054
 
 
@@ -41,16 +43,16 @@ def load_chirp_values(path: str) -> Tuple[np.ndarray, str]:
         values = df[col].dropna().to_numpy(dtype=float)
         return values, str(col)
 
-    # Fallback: tentar converter a primeira coluna
+    # Fallback: try converting the first column
     if len(df.columns) == 0:
-        raise ValueError("Planilha sem colunas.")
+        raise ValueError("Spreadsheet has no columns.")
 
     col = df.columns[0]
     series = pd.to_numeric(df[col], errors="coerce")
     if series.notna().any():
         return series.dropna().to_numpy(dtype=float), str(col)
 
-    raise ValueError("Nenhuma coluna numerica encontrada no arquivo.")
+    raise ValueError("No numeric column found in the file.")
 
 
 def normalize_audio(values: np.ndarray) -> np.ndarray:
@@ -74,11 +76,11 @@ def write_wav(path: str, samples: np.ndarray, sample_rate: int) -> None:
 
 def play_audio(samples: np.ndarray, sample_rate: int, label: str, keep_wav: bool) -> Optional[str]:
     if samples.size == 0:
-        print(f"{label}: sem amostras, pulando.")
+        print(f"{label}: no samples, skipping.")
         return None
 
     if sd is not None:
-        print(f"{label}: tocando com sounddevice...")
+        print(f"{label}: playing with sounddevice...")
         sd.play(samples, sample_rate, blocking=True)
         return None
 
@@ -87,10 +89,10 @@ def play_audio(samples: np.ndarray, sample_rate: int, label: str, keep_wav: bool
     write_wav(wav_path, samples, sample_rate)
 
     if winsound is not None:
-        print(f"{label}: tocando com winsound...")
+        print(f"{label}: playing with winsound...")
         winsound.PlaySound(wav_path, winsound.SND_FILENAME)
     else:
-        print(f"{label}: playback indisponivel, WAV salvo em: {wav_path}")
+        print(f"{label}: playback unavailable, WAV saved to: {wav_path}")
         keep_wav = True
 
     if not keep_wav:
@@ -116,7 +118,10 @@ def send_value_to_server(value: float, server: str, port: int, timeout: float) -
             if not data:
                 break
             response += data
-            if "DEBUG: Processamento concluido" in response:
+            if (
+                "DEBUG: Processamento concluido" in response
+                or "DEBUG: Processing complete" in response
+            ):
                 break
         return response
     finally:
@@ -151,7 +156,7 @@ def load_filtered_values(path: str) -> np.ndarray:
     if numeric_cols:
         series = pd.to_numeric(df[numeric_cols[0]], errors="coerce")
         return series.dropna().to_numpy(dtype=float)
-    raise ValueError("Nenhuma coluna numerica encontrada no arquivo de saida.")
+    raise ValueError("No numeric column found in the output file.")
 
 
 def send_values(
@@ -168,19 +173,19 @@ def send_values(
 
     for i, value in enumerate(values_list):
         if verbose:
-            print(f"[{i + 1:5d}/{total}] Enviando: {value}")
+            print(f"[{i + 1:5d}/{total}] Sending: {value}")
         elif i % 100 == 0 or i == total - 1:
             pct = (i + 1) / total * 100 if total else 100.0
-            print(f"Progresso: {i + 1}/{total} ({pct:.1f}%)")
+            print(f"Progress: {i + 1}/{total} ({pct:.1f}%)")
 
         try:
             response = send_value_to_server(value, server, port, timeout)
         except Exception as exc:
             if verbose:
-                print(f"  ERRO: {exc}")
+                print(f"  ERROR: {exc}")
             filtered.append(None)
         else:
-            if "ERRO:" in response:
+            if "ERRO:" in response or "ERROR:" in response:
                 if verbose:
                     print(f"  {response}")
                 filtered.append(None)
@@ -188,7 +193,7 @@ def send_values(
                 filtered_value = parse_filtered_value(response)
                 filtered.append(filtered_value)
                 if verbose:
-                    print(f"  Filtrado: {filtered_value}")
+                    print(f"  Filtered: {filtered_value}")
 
         if delay_ms > 0 and i < total - 1:
             time.sleep(delay_ms / 1000.0)
@@ -211,28 +216,28 @@ def save_results_excel(
 
 def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Envia dados chirp via TCP e toca o audio de entrada/saida."
+        description="Sends chirp data via TCP and plays the input/output audio."
     )
-    parser.add_argument("--input", default="dados_chirp.xlsx", help="Arquivo Excel de entrada.")
+    parser.add_argument("--input", default="dados_chirp.xlsx", help="Input Excel file.")
     parser.add_argument(
         "--output",
         default="dados_chirp_filtrados.xlsx",
-        help="Arquivo Excel de saida.",
+        help="Output Excel file.",
     )
-    parser.add_argument("--server", default="localhost", help="Servidor TCP.")
-    parser.add_argument("--port", type=int, default=5050, help="Porta TCP.")
-    parser.add_argument("--timeout", type=float, default=5.0, help="Timeout em segundos.")
-    parser.add_argument("--delay-ms", type=int, default=10, help="Delay entre envios (ms).")
-    parser.add_argument("--sample-rate", type=int, default=8192, help="Taxa de amostragem.")
-    parser.add_argument("--no-play-input", action="store_true", help="Nao tocar audio de entrada.")
-    parser.add_argument("--no-play-output", action="store_true", help="Nao tocar audio de saida.")
-    parser.add_argument("--keep-wav", action="store_true", help="Manter WAV temporario.")
+    parser.add_argument("--server", default="localhost", help="TCP server.")
+    parser.add_argument("--port", type=int, default=5050, help="TCP port.")
+    parser.add_argument("--timeout", type=float, default=5.0, help="Timeout in seconds.")
+    parser.add_argument("--delay-ms", type=int, default=10, help="Delay between sends (ms).")
+    parser.add_argument("--sample-rate", type=int, default=8192, help="Sample rate.")
+    parser.add_argument("--no-play-input", action="store_true", help="Do not play input audio.")
+    parser.add_argument("--no-play-output", action="store_true", help="Do not play output audio.")
+    parser.add_argument("--keep-wav", action="store_true", help="Keep temporary WAV.")
     parser.add_argument(
         "--only-show-audio",
         action="store_true",
-        help="Apenas tocar audio de entrada e saida (sem envio TCP).",
+        help="Only play input/output audio (no TCP send).",
     )
-    parser.add_argument("--verbose", action="store_true", help="Log detalhado.")
+    parser.add_argument("--verbose", action="store_true", help="Detailed log.")
     return parser
 
 
@@ -241,42 +246,42 @@ def main() -> int:
     args = parser.parse_args()
 
     if not os.path.exists(args.input):
-        print(f"ERRO: arquivo '{args.input}' nao encontrado.")
+        print(f"ERROR: file '{args.input}' not found.")
         return 1
 
     if not args.only_show_audio:
         try:
             init_container_client(args.server, args.timeout)
-            print(f"Cliente inicializado em {args.server}:{INIT_PORT}")
+            print(f"Client initialized at {args.server}:{INIT_PORT}")
         except Exception as exc:
-            print(f"ERRO ao inicializar client na porta {INIT_PORT}: {exc}")
+            print(f"ERROR initializing client on port {INIT_PORT}: {exc}")
             return 1
 
     try:
         values, col = load_chirp_values(args.input)
     except Exception as exc:
-        print(f"ERRO ao carregar dados: {exc}")
+        print(f"ERROR loading data: {exc}")
         return 1
 
-    print(f"Arquivo: {args.input}")
-    print(f"Coluna: {col}")
-    print(f"Total de valores: {len(values)}")
-    print(f"Servidor: {args.server}:{args.port}")
+    print(f"File: {args.input}")
+    print(f"Column: {col}")
+    print(f"Total values: {len(values)}")
+    print(f"Server: {args.server}:{args.port}")
     print(f"Delay: {args.delay_ms}ms")
 
     input_audio = normalize_audio(values)
     if not args.no_play_input:
-        play_audio(input_audio, args.sample_rate, "Audio de entrada", args.keep_wav)
+        play_audio(input_audio, args.sample_rate, "Input audio", args.keep_wav)
 
     if args.only_show_audio:
         try:
             filtered_numeric = load_filtered_values(args.output)
-            print(f"Carregado audio de saida de: {args.output}")
+            print(f"Loaded output audio from: {args.output}")
         except Exception as exc:
-            print(f"ERRO ao carregar audio de saida: {exc}")
+            print(f"ERROR loading output audio: {exc}")
             return 1
     else:
-        print("Enviando dados...")
+        print("Sending data...")
         filtered_values = send_values(
             values,
             server=args.server,
@@ -288,16 +293,16 @@ def main() -> int:
 
         try:
             save_results_excel(args.output, values, filtered_values)
-            print(f"Resultados salvos em: {args.output}")
+            print(f"Results saved to: {args.output}")
         except Exception as exc:
-            print(f"Aviso: nao foi possivel salvar '{args.output}': {exc}")
+            print(f"Warning: could not save '{args.output}': {exc}")
 
         filtered_numeric = np.array(
             [v if v is not None else 0.0 for v in filtered_values], dtype=float
         )
     output_audio = normalize_audio(filtered_numeric)
     if not args.no_play_output:
-        play_audio(output_audio, args.sample_rate, "Audio de saida", args.keep_wav)
+        play_audio(output_audio, args.sample_rate, "Output audio", args.keep_wav)
 
     return 0
 

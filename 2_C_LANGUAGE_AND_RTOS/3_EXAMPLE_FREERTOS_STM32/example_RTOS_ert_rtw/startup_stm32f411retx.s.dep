@@ -1,0 +1,2 @@
+startup_stm32f411retx.s.o: \
+ C:/Users/thiag/OneDrive/documentos/MATLAB/example_rtos/STM32CubeIDE/Application/User/Startup/startup_stm32f411retx.s

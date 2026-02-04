@@ -11,7 +11,7 @@ set "VENV_FULL=%BASE_DIR%%VENV_DIR%"
 set "VENV_PY=%VENV_FULL%\Scripts\python.exe"
 set "VENV_ACTIVATE=%VENV_FULL%\Scripts\activate.bat"
 
-echo Executando script: "%SCRIPT_FULL%"
+echo Running script: "%SCRIPT_FULL%"
 call "%VENV_ACTIVATE%" || exit /b 1
 python "%SCRIPT_FULL%" %*
 

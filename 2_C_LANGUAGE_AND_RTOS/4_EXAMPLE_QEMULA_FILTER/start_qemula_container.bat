@@ -13,22 +13,22 @@ set "VENV_FULL=%BASE_DIR%%VENV_DIR%"
 set "VENV_PY=%VENV_FULL%\Scripts\python.exe"
 
 if not exist "%TAR_FULL%" (
-  echo Arquivo .tar nao encontrado: "%TAR_FULL%"
+  echo .tar file not found: "%TAR_FULL%"
   exit /b 1
 )
 if not exist "%COMPOSE_FULL%" (
-  echo docker-compose.yml nao encontrado: "%COMPOSE_FULL%"
+  echo docker-compose.yml not found: "%COMPOSE_FULL%"
   exit /b 1
 )
 if not exist "%SCRIPT_FULL%" (
-  echo Script Python nao encontrado: "%SCRIPT_FULL%"
+  echo Python script not found: "%SCRIPT_FULL%"
   exit /b 1
 )
 
-echo Carregando imagem Docker: "%TAR_FULL%"
+echo Loading Docker image: "%TAR_FULL%"
 docker load -i "%TAR_FULL%" || exit /b 1
 
-echo Inicializando container com docker compose
+echo Starting container with docker compose
 docker compose version >nul 2>&1
 if %errorlevel%==0 (
   docker compose -f "%COMPOSE_FULL%" up -d || exit /b 1
@@ -37,7 +37,7 @@ if %errorlevel%==0 (
 )
 
 if not exist "%VENV_PY%" (
-  echo Criando venv em: "%VENV_FULL%"
+  echo Creating venv at: "%VENV_FULL%"
   where py >nul 2>&1
   if %errorlevel%==0 (
     py -3 -m venv "%VENV_FULL%" || exit /b 1
@@ -46,17 +46,17 @@ if not exist "%VENV_PY%" (
     if %errorlevel%==0 (
       python -m venv "%VENV_FULL%" || exit /b 1
     ) else (
-      echo Python nao encontrado no PATH.
+      echo Python not found on PATH.
       exit /b 1
     )
   )
 )
 
-echo Instalando dependencias: fastcrc, csv
+echo Installing dependencies: fastcrc, pandas, numpy
 "%VENV_PY%" -m pip install --upgrade pip || exit /b 1
 "%VENV_PY%" -m pip install fastcrc pandas numpy || exit /b 1
 
-echo Executando script: "%SCRIPT_FULL%"
+echo Running script: "%SCRIPT_FULL%"
 "%VENV_PY%" "%SCRIPT_FULL%"
 
 endlocal
